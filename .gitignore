@@ -1,0 +1,28 @@
+# --- RAHASIA & ENV ---
+.env
+myenv/
+venv/
+ENV/
+env/
+.venv
+
+# --- DATABASE ---
+*.sqlite3
+# Jangan masukkan database postgres ke git (postgres bukan file, tapi jika ada dump .sql, ignore juga)
+*.sql
+
+# --- FILE GENERATED (SAMPAH) ---
+__pycache__/
+*.pyc
+staticfiles/
+
+# --- UPLOAD USER (MEDIA) ---
+# Folder media tidak di-push karena isinya foto-foto yang di-upload saat testing
+media/
+
+# --- IDE/EDITOR ---
+.vscode/
+.idea/
+*.swp
+
+note.MD

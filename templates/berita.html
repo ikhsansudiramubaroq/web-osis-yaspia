@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Berita dan Informasi Terbaru OSIS SMK">
+    <title>Berita - OSIS SMK</title>
+    
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Google Fonts - Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <!-- Navbar Glassmorphism -->
+    <nav class="navbar navbar-expand-lg navbar-glass fixed-top" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="bi bi-mortarboard-fill me-2"></i>OSIS SMK
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="berita.html">Berita</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="galeri.html">Galeri</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#kontak">Kontak</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8" data-aos="fade-right">
+                    <h1 class="page-title">Berita & Informasi</h1>
+                    <p class="page-subtitle">Update terbaru seputar kegiatan dan prestasi OSIS SMK</p>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Berita</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter & Search Section -->
+    <section class="py-4 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-3 mb-lg-0">
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">Semua</button>
+                        <button class="filter-btn" data-filter="event">Event</button>
+                        <button class="filter-btn" data-filter="prestasi">Prestasi</button>
+                        <button class="filter-btn" data-filter="sosial">Sosial</button>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="search-box">
+                        <i class="bi bi-search"></i>
+                        <input type="text" class="form-control" id="searchInput" placeholder="Cari berita...">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Grid Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4" id="newsContainer">
+                <!-- News Card 1 -->
+                <div class="col-lg-4 col-md-6 news-item" data-aos="fade-up" data-aos-delay="100" data-category="event">
+                    <div class="news-card">
+                        <div class="news-image">
+                            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=250&fit=crop" alt="Pelantikan OSIS">
+                            <span class="news-badge">Event</span>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span><i class="bi bi-calendar3 me-1"></i>10 Feb 2026</span>
+                                <span><i class="bi bi-person me-1"></i>Admin OSIS</span>
+                            </div>
+                            <h4 class="news-title">Pelantikan Pengurus OSIS Periode 2025/2026</h4>
+                            <p class="news-excerpt">
+                                Pelantikan pengurus OSIS periode baru telah dilaksanakan dengan khidmat 
+                                di aula sekolah. Acara dihadiri oleh Kepala Sekolah, para guru, dan seluruh siswa.
+                            </p>
+                            <a href="detail-berita.html?id=1" class="btn-read-more">
+                                Baca Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- News Card 2 -->
+                <div class="col-lg-4 col-md-6 news-item" data-aos="fade-up" data-aos-delay="200" data-category="prestasi">
+                    <div class="news-card">
+                        <div class="news-image">
+                            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&h=250&fit=crop" alt="Lomba KTI">
+                            <span class="news-badge">Prestasi</span>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span><i class="bi bi-calendar3 me-1"></i>08 Feb 2026</span>
+                                <span><i class="bi bi-person me-1"></i>Admin OSIS</span>
+                            </div>
+                            <h4 class="news-title">Juara 1 Lomba Karya Tulis Ilmiah Tingkat Provinsi</h4>
+                            <p class="news-excerpt">
+                                Tim OSIS berhasil meraih juara pertama dalam lomba karya tulis ilmiah 
+                                yang diselenggarakan oleh Dinas Pendidikan Provinsi.
+                            </p>
+                            <a href="detail-berita.html?id=2" class="btn-read-more">
+                                Baca Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- News Card 3 -->
+                <div class="col-lg-4 col-md-6 news-item" data-aos="fade-up" data-aos-delay="300" data-category="sosial">
+                    <div class="news-card">
+                        <div class="news-image">
+                            <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=250&fit=crop" alt="Bakti Sosial">
+                            <span class="news-badge">Sosial</span>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span><i class="bi bi-calendar3 me-1"></i>05 Feb 2026</span>
+                                <span><i class="bi bi-person me-1"></i>Admin OSIS</span>
+                            </div>
+                            <h4 class="news-title">Bakti Sosial ke Panti Asuhan</h4>
+                            <p class="news-excerpt">
+                                OSIS mengadakan kegiatan bakti sosial dengan mengunjungi panti asuhan 
+                                dan memberikan bantuan berupa sembako dan perlengkapan sekolah.
+                            </p>
+                            <a href="detail-berita.html?id=3" class="btn-read-more">
+                                Baca Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- News Card 4 -->
+                <div class="col-lg-4 col-md-6 news-item" data-aos="fade-up" data-aos-delay="100" data-category="event">
+                    <div class="news-card">
+                        <div class="news-image">
+                            <img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?w=400&h=250&fit=crop" alt="Workshop">
+                            <span class="news-badge">Event</span>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span><i class="bi bi-calendar3 me-1"></i>03 Feb 2026</span>
+                                <span><i class="bi bi-person me-1"></i>Admin OSIS</span>
+                            </div>
+                            <h4 class="news-title">Workshop Public Speaking untuk Anggota OSIS</h4>
+                            <p class="news-excerpt">
+                                Kegiatan workshop public speaking diadakan untuk meningkatkan kemampuan 
+                                berkomunikasi anggota OSIS di depan umum.
+                            </p>
+                            <a href="detail-berita.html?id=4" class="btn-read-more">
+                                Baca Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- News Card 5 -->
+                <div class="col-lg-4 col-md-6 news-item" data-aos="fade-up" data-aos-delay="200" data-category="event">
+                    <div class="news-card">
+                        <div class="news-image">
+                            <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=400&h=250&fit=crop" alt="Turnamen">
+                            <span class="news-badge">Event</span>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span><i class="bi bi-calendar3 me-1"></i>01 Feb 2026</span>
+                                <span><i class="bi bi-person me-1"></i>Admin OSIS</span>
+                            </div>
+                            <h4 class="news-title">Turnamen Futsal Antar Kelas Meriah</h4>
+                            <p class="news-excerpt">
+                                Turnamen futsal antar kelas yang diselenggarakan OSIS berlangsung meriah 
+                                dengan antusiasme tinggi dari seluruh siswa.
+                            </p>
+                            <a href="detail-berita.html?id=5" class="btn-read-more">
+                                Baca Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- News Card 6 -->
+                <div class="col-lg-4 col-md-6 news-item" data-aos="fade-up" data-aos-delay="300" data-category="sosial">
+                    <div class="news-card">
+                        <div class="news-image">
+                            <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400&h=250&fit=crop" alt="Penghijauan">
+                            <span class="news-badge">Sosial</span>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span><i class="bi bi-calendar3 me-1"></i>28 Jan 2026</span>
+                                <span><i class="bi bi-person me-1"></i>Admin OSIS</span>
+                            </div>
+                            <h4 class="news-title">Program Penghijauan Lingkungan Sekolah</h4>
+                            <p class="news-excerpt">
+                                OSIS mengadakan program penghijauan dengan menanam 100 pohon di area 
+                                sekolah untuk menciptakan lingkungan yang lebih asri.
+                            </p>
+                            <a href="detail-berita.html?id=6" class="btn-read-more">
+                                Baca Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- News Card 7 -->
+                <div class="col-lg-4 col-md-6 news-item" data-aos="fade-up" data-aos-delay="100" data-category="event">
+                    <div class="news-card">
+                        <div class="news-image">
+                            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=250&fit=crop" alt="Study Tour">
+                            <span class="news-badge">Event</span>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span><i class="bi bi-calendar3 me-1"></i>25 Jan 2026</span>
+                                <span><i class="bi bi-person me-1"></i>Admin OSIS</span>
+                            </div>
+                            <h4 class="news-title">Study Tour ke Museum Nasional Jakarta</h4>
+                            <p class="news-excerpt">
+                                Kegiatan study tour dilaksanakan untuk menambah wawasan siswa tentang 
+                                sejarah dan budaya Indonesia.
+                            </p>
+                            <a href="detail-berita.html?id=7" class="btn-read-more">
+                                Baca Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- News Card 8 -->
+                <div class="col-lg-4 col-md-6 news-item" data-aos="fade-up" data-aos-delay="200" data-category="prestasi">
+                    <div class="news-card">
+                        <div class="news-image">
+                            <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=400&h=250&fit=crop" alt="Prestasi">
+                            <span class="news-badge">Prestasi</span>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span><i class="bi bi-calendar3 me-1"></i>20 Jan 2026</span>
+                                <span><i class="bi bi-person me-1"></i>Admin OSIS</span>
+                            </div>
+                            <h4 class="news-title">Raih Juara Harapan Lomba Tari Tradisional</h4>
+                            <p class="news-excerpt">
+                                Tim kesenian OSIS berhasil meraih juara harapan dalam lomba tari 
+                                tradisional tingkat kota dengan membawakan tari Saman.
+                            </p>
+                            <a href="detail-berita.html?id=8" class="btn-read-more">
+                                Baca Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- News Card 9 -->
+                <div class="col-lg-4 col-md-6 news-item" data-aos="fade-up" data-aos-delay="300" data-category="event">
+                    <div class="news-card">
+                        <div class="news-image">
+                            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&h=250&fit=crop" alt="Seminar">
+                            <span class="news-badge">Event</span>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span><i class="bi bi-calendar3 me-1"></i>15 Jan 2026</span>
+                                <span><i class="bi bi-person me-1"></i>Admin OSIS</span>
+                            </div>
+                            <h4 class="news-title">Seminar Motivasi "Meraih Mimpi di Era Digital"</h4>
+                            <p class="news-excerpt">
+                                OSIS menghadirkan motivator muda untuk memberikan seminar tentang 
+                                bagaimana meraih kesuksesan di era digital.
+                            </p>
+                            <a href="detail-berita.html?id=9" class="btn-read-more">
+                                Baca Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="d-flex justify-content-center mt-5" data-aos="fade-up">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination pagination-modern">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">
+                                <i class="bi bi-chevron-left"></i>
+                            </a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">
+                                <i class="bi bi-chevron-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="kontak">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Map Column -->
+                <div class="col-lg-6" data-aos="fade-up">
+                    <h4 class="footer-title">Lokasi Kami</h4>
+                    <div class="map-container">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.8195613!3d-6.194830799999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5d2e764b12d%3A0x3d2ad6e1e0e9bcc8!2sMonas!5e0!3m2!1sen!2sid!4v1234567890" 
+                            width="100%" 
+                            height="300" 
+                            style="border:0; border-radius: 15px;" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Contact Info Column -->
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                    <h4 class="footer-title">Hubungi Kami</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="bi bi-geo-alt-fill"></i>
+                            <div>
+                                <h5>Alamat</h5>
+                                <p>Jl. Pendidikan No. 123, Jakarta Pusat, DKI Jakarta 10110</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="bi bi-telephone-fill"></i>
+                            <div>
+                                <h5>Telepon</h5>
+                                <p>(021) 1234-5678</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="bi bi-envelope-fill"></i>
+                            <div>
+                                <h5>Email</h5>
+                                <p>osis@smk-example.sch.id</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="bi bi-clock-fill"></i>
+                            <div>
+                                <h5>Jam Operasional</h5>
+                                <p>Senin - Jumat: 07:00 - 16:00 WIB</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-links mt-4">
+                        <h5 class="mb-3">Media Sosial</h5>
+                        <a href="#" class="social-link">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="bi bi-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="bi bi-youtube"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="bi bi-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="footer-divider">
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 OSIS SMK. Semua Hak Dilindungi.</p>
+                <p>Dibuat dengan <i class="bi bi-heart-fill text-danger"></i> oleh Tim OSIS</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+</body>
+</html>
