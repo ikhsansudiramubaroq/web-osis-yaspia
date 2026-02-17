@@ -81,8 +81,14 @@ USE_I18N = True
 
 USE_TZ = True
 
+# static files css,js,images
+STATIC_URL = 'static/' # fungsi agar browser akses static/(nama file static)/
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] #folder static di root project
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') #fungsi untuk collecstatic saat production
 
-STATIC_URL = 'static/'
+# media files user uploads
+MEDIA_URL = '/media/' # fungsi agar browser akses media/(nama folder media/foto)/foto.jpg
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #lokasi menyimpan fotonya di local
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
