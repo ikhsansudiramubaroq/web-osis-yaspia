@@ -5,6 +5,10 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    
+    # Tambahkan baris ini!
+    path("ckeditor5/", include('django_ckeditor_5.urls')),
+    
     path('', include('home.urls')), # Path kosong ini untuk beranda
     path('gallery/', include('gallery.urls')), # Path kosong ini untuk beranda
     path('news/', include('news.urls')), # Path kosong ini untuk beranda

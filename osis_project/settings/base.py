@@ -25,6 +25,8 @@ INSTALLED_APPS = [
     'gallery',
     'accounts',
     'dashboard',
+    'django_ckeditor_5',
+    'imagekit',
 ]
 
 MIDDLEWARE = [
@@ -80,6 +82,16 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+
+CKEDITOR_5_CONFIGS = {
+    'extends': {
+        'blockToolbar': [
+            'paragraph', 'heading1', 'heading2', 'inlineTextDecoration'
+        ],
+        'toolbar': ['bold', 'italic', 'link', 'uploadImage', 'bulletedList', 'numberedList'],
+    },
+}
 
 # static files css,js,images
 STATIC_URL = 'static/' # fungsi agar browser akses static/(nama file static)/

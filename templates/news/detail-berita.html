@@ -1,386 +1,163 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Detail Berita OSIS SMK">
-    <title>Detail Berita - OSIS SMK</title>
-    
-    <!-- Bootstrap 5.3 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- AOS CSS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <!-- Google Fonts - Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    
-    <!-- Navbar Glassmorphism -->
-    <nav class="navbar navbar-expand-lg navbar-glass fixed-top" id="mainNavbar">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="index.html">
-                <i class="bi bi-mortarboard-fill me-2"></i>OSIS SMK
-            </a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Beranda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="berita.html">Berita</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="galeri.html">Galeri</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html#kontak">Kontak</a>
-                    </li>
-                </ul>
-            </div>
+{% include "base.html" %} {% block 'content' %}
+<!-- Navbar Glassmorphism -->
+{% include "partials/navbar.html" %}
+
+<!-- Article Header -->
+<section class="article-header">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10" data-aos="fade-up">
+        <nav aria-label="breadcrumb" class="mb-4">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
+            <li class="breadcrumb-item"><a href="berita.html">Berita</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+              Detail Berita
+            </li>
+          </ol>
+        </nav>
+
+        <span class="article-category">
+          <i class="bi bi-tag-fill me-1"></i>Event
+        </span>
+
+        <h1 class="article-title">
+          {% for news in news_list %} {{ news.title }} {% endfor %}
+        </h1>
+
+        <div class="article-meta">
+          <div class="meta-item">
+            <i class="bi bi-calendar3"></i>
+            <span>10 Februari 2026</span>
+          </div>
+          <div class="meta-item">
+            <i class="bi bi-person"></i>
+            <span>Admin OSIS</span>
+          </div>
+          <div class="meta-item">
+            <i class="bi bi-eye"></i>
+            <span>1,234 views</span>
+          </div>
+          <div class="meta-item">
+            <i class="bi bi-clock"></i>
+            <span>5 min read</span>
+          </div>
         </div>
-    </nav>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Article Header -->
-    <section class="article-header">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-10" data-aos="fade-up">
-                    <nav aria-label="breadcrumb" class="mb-4">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
-                            <li class="breadcrumb-item"><a href="berita.html">Berita</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Detail Berita</li>
-                        </ol>
-                    </nav>
-                    
-                    <span class="article-category">
-                        <i class="bi bi-tag-fill me-1"></i>Event
-                    </span>
-                    
-                    <h1 class="article-title">Pelantikan Pengurus OSIS Periode 2025/2026</h1>
-                    
-                    <div class="article-meta">
-                        <div class="meta-item">
-                            <i class="bi bi-calendar3"></i>
-                            <span>10 Februari 2026</span>
-                        </div>
-                        <div class="meta-item">
-                            <i class="bi bi-person"></i>
-                            <span>Admin OSIS</span>
-                        </div>
-                        <div class="meta-item">
-                            <i class="bi bi-eye"></i>
-                            <span>1,234 views</span>
-                        </div>
-                        <div class="meta-item">
-                            <i class="bi bi-clock"></i>
-                            <span>5 min read</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- Article Content -->
+<section class="article-content py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <!-- Featured Image -->
+        <div class="featured-image mb-5" data-aos="fade-up">
+          <img
+            src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&h=600&fit=crop"
+            alt="Pelantikan OSIS"
+            class="img-fluid rounded-4 shadow-lg"
+          />
+          <p class="image-caption text-center mt-3">{{ news_list.title }}</p>
         </div>
-    </section>
 
-    <!-- Article Content -->
-    <section class="article-content py-5">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <!-- Featured Image -->
-                    <div class="featured-image mb-5" data-aos="fade-up">
-                        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&h=600&fit=crop" 
-                             alt="Pelantikan OSIS" class="img-fluid rounded-4 shadow-lg">
-                        <p class="image-caption text-center mt-3">
-                            Pelantikan Pengurus OSIS Periode 2025/2026 di Aula SMK
-                        </p>
-                    </div>
+        <!-- Article Body -->
+        <div class="article-body" data-aos="fade-up">
+          <p class="lead">
+            Pelantikan pengurus OSIS periode 2025/2026 telah dilaksanakan dengan
+            khidmat pada hari Senin, 10 Februari 2026 di Aula Utama SMK. Acara
+            ini dihadiri oleh Kepala Sekolah, seluruh dewan guru, dan
+            siswa-siswi.
+          </p>
 
-                    <!-- Article Body -->
-                    <div class="article-body" data-aos="fade-up">
-                        <p class="lead">
-                            Pelantikan pengurus OSIS periode 2025/2026 telah dilaksanakan dengan khidmat 
-                            pada hari Senin, 10 Februari 2026 di Aula Utama SMK. Acara ini dihadiri oleh 
-                            Kepala Sekolah, seluruh dewan guru, dan siswa-siswi.
-                        </p>
+          <p>
+            Acara pelantikan dimulai pukul 08.00 WIB dengan pembukaan oleh MC
+            dan dilanjutkan dengan menyanyikan lagu Indonesia Raya. Suasana
+            khidmat terasa ketika para pengurus OSIS terpilih berdiri di atas
+            panggung untuk mengucapkan sumpah jabatan.
+          </p>
 
-                        <p>
-                            Acara pelantikan dimulai pukul 08.00 WIB dengan pembukaan oleh MC dan dilanjutkan 
-                            dengan menyanyikan lagu Indonesia Raya. Suasana khidmat terasa ketika para pengurus 
-                            OSIS terpilih berdiri di atas panggung untuk mengucapkan sumpah jabatan.
-                        </p>
+          <h3>Janji dan Komitmen</h3>
+          <p>
+            Ketua OSIS terpilih, Ahmad Fauzi, dalam sambutannya menyampaikan
+            komitmen untuk menjalankan amanah dengan penuh tanggung jawab. "Kami
+            berjanji akan bekerja keras untuk kemajuan sekolah dan kesejahteraan
+            seluruh siswa," ujar Ahmad.
+          </p>
 
-                        <h3>Janji dan Komitmen</h3>
-                        <p>
-                            Ketua OSIS terpilih, Ahmad Fauzi, dalam sambutannya menyampaikan komitmen untuk 
-                            menjalankan amanah dengan penuh tanggung jawab. "Kami berjanji akan bekerja keras 
-                            untuk kemajuan sekolah dan kesejahteraan seluruh siswa," ujar Ahmad.
-                        </p>
+          <blockquote class="article-quote">
+            <i class="bi bi-quote quote-icon"></i>
+            <p>
+              "Kami berjanji akan bekerja keras untuk kemajuan sekolah dan
+              kesejahteraan seluruh siswa. OSIS adalah wadah untuk menyalurkan
+              aspirasi dan kreativitas kita semua."
+            </p>
+            <footer>— Ahmad Fauzi, Ketua OSIS 2025/2026</footer>
+          </blockquote>
 
-                        <blockquote class="article-quote">
-                            <i class="bi bi-quote quote-icon"></i>
-                            <p>
-                                "Kami berjanji akan bekerja keras untuk kemajuan sekolah dan kesejahteraan 
-                                seluruh siswa. OSIS adalah wadah untuk menyalurkan aspirasi dan kreativitas 
-                                kita semua."
-                            </p>
-                            <footer>— Ahmad Fauzi, Ketua OSIS 2025/2026</footer>
-                        </blockquote>
+          <h3>Susunan Pengurus</h3>
+          <p>Berikut adalah susunan lengkap pengurus OSIS periode 2025/2026:</p>
 
-                        <h3>Susunan Pengurus</h3>
-                        <p>
-                            Berikut adalah susunan lengkap pengurus OSIS periode 2025/2026:
-                        </p>
-                        
-                        <div class="info-box">
-                            <h5><i class="bi bi-people-fill me-2"></i>Susunan Pengurus OSIS 2025/2026</h5>
-                            <ul>
-                                <li><strong>Ketua:</strong> Ahmad Fauzi (XII RPL 1)</li>
-                                <li><strong>Wakil Ketua:</strong> Siti Nurhaliza (XII AKL 2)</li>
-                                <li><strong>Sekretaris:</strong> Budi Santoso (XI TKJ 1)</li>
-                                <li><strong>Bendahara:</strong> Dewi Lestari (XI OTKP 2)</li>
-                                <li><strong>Seksi Pendidikan:</strong> Rizki Pratama (XI RPL 2)</li>
-                                <li><strong>Seksi Keagamaan:</strong> Fatimah Zahra (XI AKL 1)</li>
-                                <li><strong>Seksi Olahraga:</strong> Andi Wijaya (XII TKJ 2)</li>
-                                <li><strong>Seksi Kesenian:</strong> Maya Kartika (XII OTKP 1)</li>
-                            </ul>
-                        </div>
+          <div class="info-box">
+            <h5>
+              <i class="bi bi-people-fill me-2"></i>Susunan Pengurus OSIS
+              2025/2026
+            </h5>
+            <ul>
+              <li><strong>Ketua:</strong> Ahmad Fauzi (XII RPL 1)</li>
+              <li><strong>Wakil Ketua:</strong> Siti Nurhaliza (XII AKL 2)</li>
+              <li><strong>Sekretaris:</strong> Budi Santoso (XI TKJ 1)</li>
+              <li><strong>Bendahara:</strong> Dewi Lestari (XI OTKP 2)</li>
+              <li>
+                <strong>Seksi Pendidikan:</strong> Rizki Pratama (XI RPL 2)
+              </li>
+              <li>
+                <strong>Seksi Keagamaan:</strong> Fatimah Zahra (XI AKL 1)
+              </li>
+              <li><strong>Seksi Olahraga:</strong> Andi Wijaya (XII TKJ 2)</li>
+              <li>
+                <strong>Seksi Kesenian:</strong> Maya Kartika (XII OTKP 1)
+              </li>
+            </ul>
+          </div>
 
-                        <h3>Program Kerja Unggulan</h3>
-                        <p>
-                            Pengurus OSIS periode baru telah menyiapkan berbagai program kerja unggulan 
-                            yang akan dilaksanakan selama periode kepemimpinan mereka, antara lain:
-                        </p>
-
-                        <div class="row g-4 my-4">
-                            <div class="col-md-6">
-                                <div class="program-card">
-                                    <div class="program-icon">
-                                        <i class="bi bi-trophy"></i>
-                                    </div>
-                                    <h5>Kompetisi & Lomba</h5>
-                                    <p>Mengadakan berbagai lomba kreativitas dan olahraga untuk mengasah bakat siswa</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="program-card">
-                                    <div class="program-icon">
-                                        <i class="bi bi-heart"></i>
-                                    </div>
-                                    <h5>Bakti Sosial</h5>
-                                    <p>Program peduli masyarakat dengan berbagai kegiatan sosial</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="program-card">
-                                    <div class="program-icon">
-                                        <i class="bi bi-book"></i>
-                                    </div>
-                                    <h5>Study Club</h5>
-                                    <p>Pembentukan kelompok belajar untuk meningkatkan prestasi akademik</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="program-card">
-                                    <div class="program-icon">
-                                        <i class="bi bi-tree"></i>
-                                    </div>
-                                    <h5>Green School</h5>
-                                    <p>Program penghijauan dan peduli lingkungan</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <h3>Harapan Kepala Sekolah</h3>
-                        <p>
-                            Kepala Sekolah, Drs. Bambang Suryanto, M.Pd., dalam sambutannya berharap 
-                            pengurus OSIS yang baru dapat menjalankan tugas dengan amanah dan menjadi 
-                            teladan bagi siswa lainnya.
-                        </p>
-
-                        <p>
-                            "Saya berharap pengurus OSIS dapat menjadi jembatan komunikasi antara sekolah 
-                            dengan siswa. Mari kita bersama-sama membangun SMK kita menjadi lebih baik," 
-                            ujar Kepala Sekolah.
-                        </p>
-
-                        <!-- Social Share -->
-                        <div class="social-share mt-5">
-                            <h5>Bagikan Berita:</h5>
-                            <div class="share-buttons">
-                                <a href="#" class="share-btn facebook">
-                                    <i class="bi bi-facebook"></i>
-                                </a>
-                                <a href="#" class="share-btn twitter">
-                                    <i class="bi bi-twitter"></i>
-                                </a>
-                                <a href="#" class="share-btn whatsapp">
-                                    <i class="bi bi-whatsapp"></i>
-                                </a>
-                                <a href="#" class="share-btn linkedin">
-                                    <i class="bi bi-linkedin"></i>
-                                </a>
-                                <a href="#" class="share-btn telegram">
-                                    <i class="bi bi-telegram"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Tags -->
-                        <div class="article-tags mt-4">
-                            <h5>Tags:</h5>
-                            <a href="#" class="tag-badge">OSIS</a>
-                            <a href="#" class="tag-badge">Pelantikan</a>
-                            <a href="#" class="tag-badge">Event</a>
-                            <a href="#" class="tag-badge">Sekolah</a>
-                        </div>
-                    </div>
-                </div>
+          <!-- Social Share -->
+          <div class="social-share mt-5">
+            <h5>Bagikan Berita:</h5>
+            <div class="share-buttons">
+              <a href="#" class="share-btn facebook">
+                <i class="bi bi-facebook"></i>
+              </a>
+              <a href="#" class="share-btn twitter">
+                <i class="bi bi-twitter"></i>
+              </a>
+              <a href="#" class="share-btn whatsapp">
+                <i class="bi bi-whatsapp"></i>
+              </a>
+              <a href="#" class="share-btn linkedin">
+                <i class="bi bi-linkedin"></i>
+              </a>
+              <a href="#" class="share-btn telegram">
+                <i class="bi bi-telegram"></i>
+              </a>
             </div>
+          </div>
+
+          <!-- Tags -->
+          <div class="article-tags mt-4">
+            <h5>Tags:</h5>
+            <a href="#" class="tag-badge">OSIS</a>
+            <a href="#" class="tag-badge">Pelantikan</a>
+            <a href="#" class="tag-badge">Event</a>
+            <a href="#" class="tag-badge">Sekolah</a>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Related News -->
-    <section class="py-5 bg-light">
-        <div class="container">
-            <h3 class="text-center mb-5" data-aos="fade-up">Berita Terkait</h3>
-            <div class="row g-4">
-                <!-- Related News 1 -->
-                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="news-card">
-                        <div class="news-image">
-                            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&h=250&fit=crop" alt="Berita 2">
-                            <span class="news-badge">Prestasi</span>
-                        </div>
-                        <div class="news-content">
-                            <div class="news-meta">
-                                <span><i class="bi bi-calendar3 me-1"></i>08 Feb 2026</span>
-                            </div>
-                            <h4 class="news-title">Juara 1 Lomba Karya Tulis Ilmiah</h4>
-                            <a href="detail-berita.html?id=2" class="btn-read-more">
-                                Baca Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Related News 2 -->
-                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="news-card">
-                        <div class="news-image">
-                            <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=250&fit=crop" alt="Berita 3">
-                            <span class="news-badge">Sosial</span>
-                        </div>
-                        <div class="news-content">
-                            <div class="news-meta">
-                                <span><i class="bi bi-calendar3 me-1"></i>05 Feb 2026</span>
-                            </div>
-                            <h4 class="news-title">Bakti Sosial ke Panti Asuhan</h4>
-                            <a href="detail-berita.html?id=3" class="btn-read-more">
-                                Baca Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Related News 3 -->
-                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="news-card">
-                        <div class="news-image">
-                            <img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?w=400&h=250&fit=crop" alt="Berita 4">
-                            <span class="news-badge">Event</span>
-                        </div>
-                        <div class="news-content">
-                            <div class="news-meta">
-                                <span><i class="bi bi-calendar3 me-1"></i>03 Feb 2026</span>
-                            </div>
-                            <h4 class="news-title">Workshop Public Speaking</h4>
-                            <a href="detail-berita.html?id=4" class="btn-read-more">
-                                Baca Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-6">
-                    <h4 class="footer-title">Lokasi Kami</h4>
-                    <div class="map-container">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.8195613!3d-6.194830799999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5d2e764b12d%3A0x3d2ad6e1e0e9bcc8!2sMonas!5e0!3m2!1sen!2sid!4v1234567890" 
-                            width="100%" 
-                            height="300" 
-                            style="border:0; border-radius: 15px;" 
-                            allowfullscreen="" 
-                            loading="lazy">
-                        </iframe>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <h4 class="footer-title">Hubungi Kami</h4>
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <i class="bi bi-geo-alt-fill"></i>
-                            <div>
-                                <h5>Alamat</h5>
-                                <p>Jl. Pendidikan No. 123, Jakarta Pusat, DKI Jakarta 10110</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="bi bi-telephone-fill"></i>
-                            <div>
-                                <h5>Telepon</h5>
-                                <p>(021) 1234-5678</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="bi bi-envelope-fill"></i>
-                            <div>
-                                <h5>Email</h5>
-                                <p>osis@smk-example.sch.id</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="social-links mt-4">
-                        <h5 class="mb-3">Media Sosial</h5>
-                        <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="social-link"><i class="bi bi-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="bi bi-youtube"></i></a>
-                        <a href="#" class="social-link"><i class="bi bi-tiktok"></i></a>
-                    </div>
-                </div>
-            </div>
-            <hr class="footer-divider">
-            <div class="footer-bottom">
-                <p>&copy; 2026 OSIS SMK. Semua Hak Dilindungi.</p>
-                <p>Dibuat dengan <i class="bi bi-heart-fill text-danger"></i> oleh Tim OSIS</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- AOS JS -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <!-- Custom JS -->
-    <script src="js/script.js"></script>
-</body>
-</html>
+<!-- Footer -->
+{% include "partials/footer.html" %} {% endblock 'content' %}
