@@ -20,12 +20,21 @@ class Hero(models.Model):
         return self.title_hero
 
 class Agenda(models.Model):
+    STATUS_CHOICES = [
+        ('draft', 'Draft'),
+        ('publish', 'Publish')
+    ]
     title_agenda = models.CharField(max_length=100)
     category_agenda = models.CharField(max_length=50)
     description_agenda = models.TextField()
     location = models.CharField(max_length=50)
     date_agenda = models.DateField()
     time_agenda = models.TimeField()
+    status_agenda = models.CharField(
+        max_length=10,
+        choices=STATUS_CHOICES,
+        default='draft'
+    )
     
     def __str__(self):
         return self.title_agenda

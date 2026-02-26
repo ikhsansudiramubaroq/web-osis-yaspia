@@ -7,78 +7,23 @@
   <div class="swiper heroSwiper">
     <div class="swiper-wrapper">
       <!-- Slide 1 -->
+
+      {% for her in hero %}
       <div class="swiper-slide">
         <div
           class="slide-bg"
-          style="
-            background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          "
-        ></div>
-        <div class="slide-content">
-          <h1 class="slide-title" data-aos="fade-up">
-            Selamat Datang di OSIS SMK
-          </h1>
-          <p class="slide-subtitle" data-aos="fade-up" data-aos-delay="100">
-            Bersama Membangun Generasi Unggul dan Berkarakter
-          </p>
-          <a
-            href="#tentang"
-            class="btn btn-light btn-lg mt-3"
-            data-aos="fade-up"
-            data-aos-delay="200"
+          style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('{{ her.image_hero.url }}') center/cover no-repeat;"
+        >
           >
-            Pelajari Lebih Lanjut <i class="bi bi-arrow-right ms-2"></i>
-          </a>
+        </div>
+        <div class="slide-content">
+          <h1 class="slide-title" data-aos="fade-up">{{ her.title_hero }}</h1>
+          <p class="slide-subtitle" data-aos="fade-up" data-aos-delay="100">
+            {{ her.subtitle_hero }}
+          </p>
         </div>
       </div>
-      <!-- Slide 2 -->
-      <div class="swiper-slide">
-        <div
-          class="slide-bg"
-          style="
-            background-image: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-          "
-        ></div>
-        <div class="slide-content">
-          <h1 class="slide-title" data-aos="fade-up">
-            Kegiatan & Event Terbaru
-          </h1>
-          <p class="slide-subtitle" data-aos="fade-up" data-aos-delay="100">
-            Ikuti berbagai kegiatan menarik yang kami selenggarakan
-          </p>
-          <a
-            href="#agenda"
-            class="btn btn-light btn-lg mt-3"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            Lihat Agenda <i class="bi bi-calendar-event ms-2"></i>
-          </a>
-        </div>
-      </div>
-      <!-- Slide 3 -->
-      <div class="swiper-slide">
-        <div
-          class="slide-bg"
-          style="
-            background-image: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-          "
-        ></div>
-        <div class="slide-content">
-          <h1 class="slide-title" data-aos="fade-up">Dokumentasi Kegiatan</h1>
-          <p class="slide-subtitle" data-aos="fade-up" data-aos-delay="100">
-            Momen berharga yang telah kami lewati bersama
-          </p>
-          <a
-            href="galeri.html"
-            class="btn btn-light btn-lg mt-3"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            Lihat Galeri <i class="bi bi-images ms-2"></i>
-          </a>
-        </div>
-      </div>
+      {% endfor %}
     </div>
     <div class="swiper-pagination"></div>
     <div class="swiper-button-next"></div>
@@ -92,76 +37,38 @@
     <div class="text-center mb-5" data-aos="fade-up">
       <h2 class="section-title">Agenda Mendatang</h2>
       <p class="text-muted">
-        Jangan lewatkan kegiatan-kegiatan menarik dari OSIS SMK
+        Jangan lewatkan kegiatan-kegiatan menarik dari OSIS SMK Yaspia
       </p>
     </div>
     <div class="row g-4">
       <!-- Event Card 1 -->
+
+      {% for event in agenda %}
       <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
         <div class="event-card">
           <div class="event-date-badge">
-            <span class="day">15</span>
-            <span class="month">Feb</span>
+            <span class="day">{{ event.date_agenda|date:"d" }}</span>
+            <span class="month">{{ event.date_agenda|date:"M" }}</span>
           </div>
           <div class="event-content">
             <span class="event-category">
-              <i class="bi bi-tag-fill me-1"></i>Lomba
+              <i class="bi bi-tag-fill me-1"></i>{{ event.category_agenda }}
             </span>
-            <h4 class="event-title">Lomba Debat Antar Kelas</h4>
-            <p class="event-description">
-              Kompetisi debat bahasa Indonesia tingkat SMK se-kota
-            </p>
+            <h4 class="event-title">{{ event.title_agenda }}</h4>
+            <p class="event-description">{{ event.description_agenda }}</p>
             <div class="event-meta">
-              <span><i class="bi bi-clock me-1"></i>08:00 WIB</span>
-              <span><i class="bi bi-geo-alt me-1"></i>Aula Utama</span>
+              <span
+                ><i class="bi bi-clock me-1"></i>
+                {{event.time_agenda|time:"H.i"}} WIB</span
+              >
+              <span
+                ><i class="bi bi-geo-alt me-1"></i>{{ event.location }}
+              </span>
             </div>
           </div>
         </div>
       </div>
-      <!-- Event Card 2 -->
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-        <div class="event-card">
-          <div class="event-date-badge">
-            <span class="day">20</span>
-            <span class="month">Feb</span>
-          </div>
-          <div class="event-content">
-            <span class="event-category">
-              <i class="bi bi-tag-fill me-1"></i>Bakti Sosial
-            </span>
-            <h4 class="event-title">Donor Darah Bersama PMI</h4>
-            <p class="event-description">
-              Kegiatan sosial donor darah untuk membantu sesama
-            </p>
-            <div class="event-meta">
-              <span><i class="bi bi-clock me-1"></i>07:00 WIB</span>
-              <span><i class="bi bi-geo-alt me-1"></i>Lapangan Sekolah</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Event Card 3 -->
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-        <div class="event-card">
-          <div class="event-date-badge">
-            <span class="day">28</span>
-            <span class="month">Feb</span>
-          </div>
-          <div class="event-content">
-            <span class="event-category">
-              <i class="bi bi-tag-fill me-1"></i>Workshop
-            </span>
-            <h4 class="event-title">Pelatihan Kepemimpinan</h4>
-            <p class="event-description">
-              Workshop pengembangan softskill dan leadership
-            </p>
-            <div class="event-meta">
-              <span><i class="bi bi-clock me-1"></i>13:00 WIB</span>
-              <span><i class="bi bi-geo-alt me-1"></i>Ruang Multimedia</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -180,11 +87,7 @@
           </div>
           <div>
             <h4 class="vm-title">Visi</h4>
-            <p class="vm-text">
-              Menjadi organisasi siswa yang unggul, inovatif, dan berkarakter
-              dalam membentuk generasi muda yang bertanggung jawab, kreatif, dan
-              berprestasi.
-            </p>
+            <p class="vm-text">{{ visi.teks_visi }}</p>
           </div>
         </div>
 
@@ -195,15 +98,9 @@
           <div>
             <h4 class="vm-title">Misi</h4>
             <ul class="vm-list">
-              <li>
-                Mengembangkan potensi siswa melalui berbagai kegiatan positif
-              </li>
-              <li>Membangun jiwa kepemimpinan dan tanggung jawab siswa</li>
-              <li>Menciptakan lingkungan sekolah yang harmonis dan kondusif</li>
-              <li>Menjadi wadah aspirasi dan kreativitas siswa</li>
-              <li>
-                Menjalin kerjasama dengan berbagai pihak untuk kemajuan sekolah
-              </li>
+              {% for mis in misi %}
+              <li>{{ mis.misi }}</li>
+              {% endfor %}
             </ul>
           </div>
         </div>
@@ -215,13 +112,13 @@
           <div class="photo-decoration blob-1"></div>
           <div class="photo-decoration blob-2"></div>
           <img
-            src="img/tenaga-pendidik.jpg"
+            src="{{ visi.image_visi.url }}"
             alt="Pengurus OSIS"
             class="img-fluid rounded-4 shadow-lg"
           />
           <div class="photo-badge">
             <i class="bi bi-people-fill me-2"></i>
-            <span>Pengurus OSIS 2025/2026</span>
+            <span> {{ visi.description_image }} </span>
           </div>
         </div>
       </div>
@@ -336,117 +233,31 @@
   <div class="container">
     <div class="text-center mb-5" data-aos="fade-up">
       <h2 class="section-title">Galeri Foto</h2>
-      <p class="text-muted">Dokumentasi kegiatan dan momen berharga OSIS SMK</p>
+      <p class="text-muted">
+        Dokumentasi kegiatan dan momen berharga OSIS SMK Yaspia
+      </p>
     </div>
     <div class="gallery-grid">
-      <div
-        class="gallery-item"
-        data-aos="zoom-in"
-        data-aos-delay="100"
-        data-bs-toggle="modal"
-        data-bs-target="#galleryModal"
-        onclick="showImage(0)"
-        style="cursor: pointer"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=400&h=400&fit=crop"
-          alt="Pelantikan OSIS"
-        />
-        <div class="gallery-overlay">
-          <i class="bi bi-zoom-in"></i>
-          <p class="gallery-title">Pelantikan OSIS 2025/2026</p>
-        </div>
-      </div>
-      <div
-        class="gallery-item"
-        data-aos="zoom-in"
-        data-aos-delay="200"
-        data-bs-toggle="modal"
-        data-bs-target="#galleryModal"
-        onclick="showImage(1)"
-        style="cursor: pointer"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&h=400&fit=crop"
-          alt="Seminar Motivasi"
-        />
-        <div class="gallery-overlay">
-          <i class="bi bi-zoom-in"></i>
-          <p class="gallery-title">Seminar Motivasi</p>
-        </div>
-      </div>
-      <div
-        class="gallery-item"
-        data-aos="zoom-in"
-        data-aos-delay="300"
-        data-bs-toggle="modal"
-        data-bs-target="#galleryModal"
-        onclick="showImage(2)"
-        style="cursor: pointer"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=400&h=400&fit=crop"
-          alt="Lomba Debat"
-        />
-        <div class="gallery-overlay">
-          <i class="bi bi-zoom-in"></i>
-          <p class="gallery-title">Lomba Debat Antar Kelas</p>
-        </div>
-      </div>
-      <div
-        class="gallery-item"
-        data-aos="zoom-in"
-        data-aos-delay="400"
-        data-bs-toggle="modal"
-        data-bs-target="#galleryModal"
-        onclick="showImage(3)"
-        style="cursor: pointer"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=400&fit=crop"
-          alt="Workshop Public Speaking"
-        />
-        <div class="gallery-overlay">
-          <i class="bi bi-zoom-in"></i>
-          <p class="gallery-title">Workshop Public Speaking</p>
-        </div>
-      </div>
-      <div
-        class="gallery-item"
-        data-aos="zoom-in"
-        data-aos-delay="500"
-        data-bs-toggle="modal"
-        data-bs-target="#galleryModal"
-        onclick="showImage(4)"
-        style="cursor: pointer"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=400&fit=crop"
-          alt="Study Tour"
-        />
-        <div class="gallery-overlay">
-          <i class="bi bi-zoom-in"></i>
-          <p class="gallery-title">Study Tour Museum</p>
-        </div>
-      </div>
+      {% for gallery in home_gallery %}
       <div
         class="gallery-item"
         data-aos="zoom-in"
         data-aos-delay="600"
         data-bs-toggle="modal"
         data-bs-target="#galleryModal"
-        onclick="showImage(5)"
+        onclick="showImage({{ forloop.counter0 }})"
         style="cursor: pointer"
       >
         <img
-          src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=400&h=400&fit=crop"
-          alt="Tari Tradisional"
+          src="{{ gallery.image_thumbnail.url }}"
+          alt="{{ gallery.title }}"
         />
         <div class="gallery-overlay">
           <i class="bi bi-zoom-in"></i>
-          <p class="gallery-title">Lomba Tari Tradisional</p>
+          <p class="gallery-title">{{ gallery.title }}</p>
         </div>
       </div>
+      {% endfor %}
     </div>
     <div class="text-center mt-4" data-aos="fade-up">
       <a href="galeri.html" class="btn btn-primary btn-lg">
@@ -502,14 +313,6 @@
                   <i class="bi bi-calendar3"></i>
                   <span id="modalDate"></span>
                 </div>
-                <div class="meta-item">
-                  <i class="bi bi-eye"></i>
-                  <span id="modalViews"></span>
-                </div>
-                <div class="meta-item">
-                  <i class="bi bi-heart"></i>
-                  <span id="modalLikes"></span>
-                </div>
               </div>
               <div class="modal-actions">
                 <button class="btn btn-primary btn-sm w-100 mb-2">
@@ -528,4 +331,19 @@
 </div>
 
 <!-- Footer -->
+
+<script>
+  const homeGalleryData = [
+      {% for g in home_gallery %}
+      {
+          src: "{{ g.image.url }}",
+          title: "{{ g.title|escapejs }}",
+          description: "{{ g.description|escapejs }}",
+          date: "{{ g.created_at|date:'d M Y' }}",
+      }{% if not forloop.last %},{% endif %}
+      {% endfor %}
+  ];
+  console.log(homeGalleryData); // Cek di inspect element browser, muncul gak datanya?
+</script>
+
 {% include "partials/footer.html" %} {% endblock 'content' %}

@@ -11,6 +11,7 @@ class Category(models.Model):
 
 class Gallery(models.Model):
     title = models.CharField(max_length=100)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE,null=True, blank=True ,related_name='gallery')
     description = models.TextField()
     
     # untuk detail gallery 
@@ -25,7 +26,7 @@ class Gallery(models.Model):
     # untuk thumbnail gallery
     image_thumbnail = ImageSpecField(
         source='image',
-        processors= [ResizeToFill(400,255)],
+        processors= [ResizeToFill(600,600)],
         format='JPEG',
         options={'quality':70}
     )
