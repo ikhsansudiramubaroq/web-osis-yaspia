@@ -4,8 +4,8 @@
  */
 
 // Global variables for Gallery Modal to work with inline onclick attributes
-let activeGalleryData = [];
-let currentImageIndex = 0;
+// let activeGalleryData = [];
+// let currentImageIndex = 0;
 
 // Global helper functions
 function showImage(index) {
@@ -48,10 +48,19 @@ function navigateImage(direction) {
 function updateModalContent() {
   // Gunakan satu variabel saja.
   // Kita pakai homeGalleryData yang dikirim dari Django di index.html
-  const data = homeGalleryData[currentImageIndex];
+  // Gunakan activeGalleryData (dari galeri.html) atau homeGalleryData (dari index.html)
+  const data =
+    typeof activeGalleryData !== "undefined"
+      ? activeGalleryData[currentImageIndex]
+      : typeof homeGalleryData !== "undefined"
+        ? homeGalleryData[currentImageIndex]
+        : null;
 
   // Pastikan data ada sebelum mencoba mengakses propertinya
-  if (!data) return;
+  if (!data) {
+    console.error("Data galeri tidak ditemukan!");
+    return;
+  }
 
   const modalImage = document.getElementById("modalImage");
   const modalTitle = document.getElementById("modalTitle");
@@ -68,10 +77,6 @@ function updateModalContent() {
   if (modalTitle) modalTitle.textContent = data.title || "Tanpa Judul";
   if (modalDesc) modalDesc.textContent = data.description || "";
   if (modalDate) modalDate.textContent = data.date || "";
-
-  // Update Views & Likes (Tambahkan default 0 jika data tidak ada di Django)
-  if (modalViews) modalViews.textContent = (data.views || "0") + " views";
-  if (modalLikes) modalLikes.textContent = (data.likes || "0") + " likes";
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -186,12 +191,13 @@ document.addEventListener("DOMContentLoaded", function () {
         const searchValue = this.value.toLowerCase();
 
         newsItems.forEach((item) => {
-          const title = item
-            .querySelector(".news-title")
-            .textContent.toLowerCase();
-          const excerpt = item
-            .querySelector(".news-excerpt")
-            .textContent.toLowerCase();
+          // Gunakan querySelector dengan pengecekan aman
+          const titleEl = item.querySelector(".news-title");
+          const excerptEl = item.querySelector(".news-excerpt");
+
+          // Ambil textContent jika elemen ada, jika tidak ada isi string kosong
+          const title = titleEl ? titleEl.textContent.toLowerCase() : "";
+          const excerpt = excerptEl ? excerptEl.textContent.toLowerCase() : "";
 
           if (title.includes(searchValue) || excerpt.includes(searchValue)) {
             showItem(item);

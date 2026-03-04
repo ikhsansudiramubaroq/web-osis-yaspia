@@ -135,95 +135,37 @@
     >
       <div>
         <h2 class="section-title mb-0">Berita Terbaru</h2>
-        <p class="text-muted">Informasi dan update kegiatan OSIS</p>
+        <p class="text-muted">Informasi dan update kegiatan OSIS SMK Yaspia</p>
       </div>
-      <a href="berita.html" class="btn btn-primary">
+      <a href="{% url 'news:index' %}" class="btn btn-primary">
         Lihat Semua <i class="bi bi-arrow-right ms-2"></i>
       </a>
     </div>
     <div class="row g-4">
       <!-- News Card 1 -->
+      {% for news in home_news %}
       <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
         <div class="news-card">
           <div class="news-image">
-            <img
-              src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=250&fit=crop"
-              alt="Berita 1"
-            />
-            <span class="news-badge">Event</span>
+            <img src="{{ news.image_thumbnail.url }}" alt="Berita 1" />
+            <span class="news-badge">{{ news.category }} </span>
           </div>
           <div class="news-content">
             <div class="news-meta">
-              <span><i class="bi bi-calendar3 me-1"></i>10 Feb 2026</span>
-              <span><i class="bi bi-person me-1"></i>Admin OSIS</span>
+              <span
+                ><i class="bi bi-calendar3 me-1"></i>
+                {{ news.created_at|date:"d M Y"}}
+              </span>
+              <span><i class="bi bi-person me-1"></i>{{ request.user }} </span>
             </div>
-            <h4 class="news-title">
-              Pelantikan Pengurus OSIS Periode 2025/2026
-            </h4>
-            <p class="news-excerpt">
-              Pelantikan pengurus OSIS periode baru telah dilaksanakan dengan
-              khidmat di aula sekolah...
-            </p>
+            <h4 class="news-title">{{ news.title|truncatechars:30 }}</h4>
             <a href="detail-berita.html?id=1" class="btn-read-more">
               Baca Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
             </a>
           </div>
         </div>
       </div>
-      <!-- News Card 2 -->
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-        <div class="news-card">
-          <div class="news-image">
-            <img
-              src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&h=250&fit=crop"
-              alt="Berita 2"
-            />
-            <span class="news-badge">Prestasi</span>
-          </div>
-          <div class="news-content">
-            <div class="news-meta">
-              <span><i class="bi bi-calendar3 me-1"></i>08 Feb 2026</span>
-              <span><i class="bi bi-person me-1"></i>Admin OSIS</span>
-            </div>
-            <h4 class="news-title">
-              Juara 1 Lomba Karya Tulis Ilmiah Tingkat Provinsi
-            </h4>
-            <p class="news-excerpt">
-              Tim OSIS berhasil meraih juara pertama dalam lomba karya tulis
-              ilmiah yang diselenggarakan...
-            </p>
-            <a href="detail-berita.html?id=2" class="btn-read-more">
-              Baca Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-      <!-- News Card 3 -->
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-        <div class="news-card">
-          <div class="news-image">
-            <img
-              src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=250&fit=crop"
-              alt="Berita 3"
-            />
-            <span class="news-badge">Sosial</span>
-          </div>
-          <div class="news-content">
-            <div class="news-meta">
-              <span><i class="bi bi-calendar3 me-1"></i>05 Feb 2026</span>
-              <span><i class="bi bi-person me-1"></i>Admin OSIS</span>
-            </div>
-            <h4 class="news-title">Bakti Sosial ke Panti Asuhan</h4>
-            <p class="news-excerpt">
-              OSIS mengadakan kegiatan bakti sosial dengan mengunjungi panti
-              asuhan dan memberikan bantuan...
-            </p>
-            <a href="detail-berita.html?id=3" class="btn-read-more">
-              Baca Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
-            </a>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -260,7 +202,7 @@
       {% endfor %}
     </div>
     <div class="text-center mt-4" data-aos="fade-up">
-      <a href="galeri.html" class="btn btn-primary btn-lg">
+      <a href="{% url 'gallery:index' %}" class="btn btn-primary btn-lg">
         Lihat Semua Foto <i class="bi bi-arrow-right ms-2"></i>
       </a>
     </div>

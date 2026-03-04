@@ -18,21 +18,19 @@
         </nav>
 
         <span class="article-category">
-          <i class="bi bi-tag-fill me-1"></i>Event
+          <i class="bi bi-tag-fill me-1"></i>{{ news_detail.category }}
         </span>
 
-        <h1 class="article-title">
-          {% for news in news_list %} {{ news.title }} {% endfor %}
-        </h1>
+        <h1 class="article-title">{{ news_detail.title }}</h1>
 
         <div class="article-meta">
           <div class="meta-item">
             <i class="bi bi-calendar3"></i>
-            <span>10 Februari 2026</span>
+            <span>{{ news_detail.created_at|date:"d M Y" }} </span>
           </div>
           <div class="meta-item">
             <i class="bi bi-person"></i>
-            <span>Admin OSIS</span>
+            <span>{{ news_detail.user }} </span>
           </div>
           <div class="meta-item">
             <i class="bi bi-eye"></i>
@@ -56,7 +54,7 @@
         <!-- Featured Image -->
         <div class="featured-image mb-5" data-aos="fade-up">
           <img
-            src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&h=600&fit=crop"
+            src="{{ news_detail.image.url }}"
             alt="Pelantikan OSIS"
             class="img-fluid rounded-4 shadow-lg"
           />
@@ -65,28 +63,9 @@
 
         <!-- Article Body -->
         <div class="article-body" data-aos="fade-up">
-          <p class="lead">
-            Pelantikan pengurus OSIS periode 2025/2026 telah dilaksanakan dengan
-            khidmat pada hari Senin, 10 Februari 2026 di Aula Utama SMK. Acara
-            ini dihadiri oleh Kepala Sekolah, seluruh dewan guru, dan
-            siswa-siswi.
-          </p>
+          <p>{{ news_detail.content|safe }}</p>
 
-          <p>
-            Acara pelantikan dimulai pukul 08.00 WIB dengan pembukaan oleh MC
-            dan dilanjutkan dengan menyanyikan lagu Indonesia Raya. Suasana
-            khidmat terasa ketika para pengurus OSIS terpilih berdiri di atas
-            panggung untuk mengucapkan sumpah jabatan.
-          </p>
-
-          <h3>Janji dan Komitmen</h3>
-          <p>
-            Ketua OSIS terpilih, Ahmad Fauzi, dalam sambutannya menyampaikan
-            komitmen untuk menjalankan amanah dengan penuh tanggung jawab. "Kami
-            berjanji akan bekerja keras untuk kemajuan sekolah dan kesejahteraan
-            seluruh siswa," ujar Ahmad.
-          </p>
-
+          {% comment %}
           <blockquote class="article-quote">
             <i class="bi bi-quote quote-icon"></i>
             <p>
@@ -96,32 +75,7 @@
             </p>
             <footer>— Ahmad Fauzi, Ketua OSIS 2025/2026</footer>
           </blockquote>
-
-          <h3>Susunan Pengurus</h3>
-          <p>Berikut adalah susunan lengkap pengurus OSIS periode 2025/2026:</p>
-
-          <div class="info-box">
-            <h5>
-              <i class="bi bi-people-fill me-2"></i>Susunan Pengurus OSIS
-              2025/2026
-            </h5>
-            <ul>
-              <li><strong>Ketua:</strong> Ahmad Fauzi (XII RPL 1)</li>
-              <li><strong>Wakil Ketua:</strong> Siti Nurhaliza (XII AKL 2)</li>
-              <li><strong>Sekretaris:</strong> Budi Santoso (XI TKJ 1)</li>
-              <li><strong>Bendahara:</strong> Dewi Lestari (XI OTKP 2)</li>
-              <li>
-                <strong>Seksi Pendidikan:</strong> Rizki Pratama (XI RPL 2)
-              </li>
-              <li>
-                <strong>Seksi Keagamaan:</strong> Fatimah Zahra (XI AKL 1)
-              </li>
-              <li><strong>Seksi Olahraga:</strong> Andi Wijaya (XII TKJ 2)</li>
-              <li>
-                <strong>Seksi Kesenian:</strong> Maya Kartika (XII OTKP 1)
-              </li>
-            </ul>
-          </div>
+          {% endcomment %}
 
           <!-- Social Share -->
           <div class="social-share mt-5">

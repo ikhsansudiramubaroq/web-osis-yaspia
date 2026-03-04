@@ -3,11 +3,12 @@ from django.utils.text import slugify
 from django_ckeditor_5.fields import CKEditor5Field
 from imagekit.models import ProcessedImageField, ImageSpecField
 from imagekit.processors import ResizeToFill
+from django.conf import settings
 
 # Create your models here.
 class Category(models.Model):
     name = models.CharField(max_length=100)
-    slug = models.SlugField(unique=True,blank=True)
+    slug = models.SlugField(unique=True,blank=True, editable=False)
     
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -18,9 +19,10 @@ class Category(models.Model):
             
 
 class News(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='news')
     title = models.CharField(max_length=250)
-    slug = models.SlugField(unique=True,blank=True)
+    slug = models.SlugField(unique=True,blank=True, editable=False)
     content = CKEditor5Field('Content', config_name='extends')
     
     # untuk detail news 

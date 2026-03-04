@@ -54,6 +54,7 @@
   <div class="container">
     <div class="row g-4" id="newsContainer">
       <!-- News Card 1 -->
+      {% for news in news_list  %}
       <div
         class="col-lg-4 col-md-6 news-item"
         data-aos="fade-up"
@@ -63,315 +64,80 @@
         <div class="news-card">
           <div class="news-image">
             <img
-              src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=250&fit=crop"
+              src="{{ news.image_thumbnail.url }}"
               alt="Pelantikan OSIS"
             />
-            <span class="news-badge">Event</span>
+            <span class="news-badge">{{ news.category }} </span>
           </div>
           <div class="news-content">
             <div class="news-meta">
-              <span><i class="bi bi-calendar3 me-1"></i>10 Feb 2026</span>
-              <span><i class="bi bi-person me-1"></i>Admin OSIS</span>
+              <span><i class="bi bi-calendar3 me-1"></i>{{ news.created_at|date:"d M Y" }} </span>
+              <span><i class="bi bi-person me-1"></i>{{ request.user }} </span>
             </div>
             <h4 class="news-title">
-              Pelantikan Pengurus OSIS Periode 2025/2026
+              {{ news.title|truncatechars:30 }}
             </h4>
-            <p class="news-excerpt">
-              Pelantikan pengurus OSIS periode baru telah dilaksanakan dengan
-              khidmat di aula sekolah. Acara dihadiri oleh Kepala Sekolah, para
-              guru, dan seluruh siswa.
-            </p>
-            <a href="{% url 'news:detail_news' %}" class="btn-read-more">
+            <a href="{% url 'news:detail_news' news.slug %}" class="btn-read-more">
               Baca Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
             </a>
           </div>
         </div>
       </div>
-
-      <!-- News Card 2 -->
-      <div
-        class="col-lg-4 col-md-6 news-item"
-        data-aos="fade-up"
-        data-aos-delay="200"
-        data-category="prestasi"
-      >
-        <div class="news-card">
-          <div class="news-image">
-            <img
-              src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&h=250&fit=crop"
-              alt="Lomba KTI"
-            />
-            <span class="news-badge">Prestasi</span>
-          </div>
-          <div class="news-content">
-            <div class="news-meta">
-              <span><i class="bi bi-calendar3 me-1"></i>08 Feb 2026</span>
-              <span><i class="bi bi-person me-1"></i>Admin OSIS</span>
-            </div>
-            <h4 class="news-title">
-              Juara 1 Lomba Karya Tulis Ilmiah Tingkat Provinsi
-            </h4>
-            <p class="news-excerpt">
-              Tim OSIS berhasil meraih juara pertama dalam lomba karya tulis
-              ilmiah yang diselenggarakan oleh Dinas Pendidikan Provinsi.
-            </p>
-            <a href="detail-berita.html?id=2" class="btn-read-more">
-              Baca Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- News Card 3 -->
-      <div
-        class="col-lg-4 col-md-6 news-item"
-        data-aos="fade-up"
-        data-aos-delay="300"
-        data-category="sosial"
-      >
-        <div class="news-card">
-          <div class="news-image">
-            <img
-              src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=250&fit=crop"
-              alt="Bakti Sosial"
-            />
-            <span class="news-badge">Sosial</span>
-          </div>
-          <div class="news-content">
-            <div class="news-meta">
-              <span><i class="bi bi-calendar3 me-1"></i>05 Feb 2026</span>
-              <span><i class="bi bi-person me-1"></i>Admin OSIS</span>
-            </div>
-            <h4 class="news-title">Bakti Sosial ke Panti Asuhan</h4>
-            <p class="news-excerpt">
-              OSIS mengadakan kegiatan bakti sosial dengan mengunjungi panti
-              asuhan dan memberikan bantuan berupa sembako dan perlengkapan
-              sekolah.
-            </p>
-            <a href="detail-berita.html?id=3" class="btn-read-more">
-              Baca Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- News Card 4 -->
-      <div
-        class="col-lg-4 col-md-6 news-item"
-        data-aos="fade-up"
-        data-aos-delay="100"
-        data-category="event"
-      >
-        <div class="news-card">
-          <div class="news-image">
-            <img
-              src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?w=400&h=250&fit=crop"
-              alt="Workshop"
-            />
-            <span class="news-badge">Event</span>
-          </div>
-          <div class="news-content">
-            <div class="news-meta">
-              <span><i class="bi bi-calendar3 me-1"></i>03 Feb 2026</span>
-              <span><i class="bi bi-person me-1"></i>Admin OSIS</span>
-            </div>
-            <h4 class="news-title">
-              Workshop Public Speaking untuk Anggota OSIS
-            </h4>
-            <p class="news-excerpt">
-              Kegiatan workshop public speaking diadakan untuk meningkatkan
-              kemampuan berkomunikasi anggota OSIS di depan umum.
-            </p>
-            <a href="detail-berita.html?id=4" class="btn-read-more">
-              Baca Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- News Card 5 -->
-      <div
-        class="col-lg-4 col-md-6 news-item"
-        data-aos="fade-up"
-        data-aos-delay="200"
-        data-category="event"
-      >
-        <div class="news-card">
-          <div class="news-image">
-            <img
-              src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=400&h=250&fit=crop"
-              alt="Turnamen"
-            />
-            <span class="news-badge">Event</span>
-          </div>
-          <div class="news-content">
-            <div class="news-meta">
-              <span><i class="bi bi-calendar3 me-1"></i>01 Feb 2026</span>
-              <span><i class="bi bi-person me-1"></i>Admin OSIS</span>
-            </div>
-            <h4 class="news-title">Turnamen Futsal Antar Kelas Meriah</h4>
-            <p class="news-excerpt">
-              Turnamen futsal antar kelas yang diselenggarakan OSIS berlangsung
-              meriah dengan antusiasme tinggi dari seluruh siswa.
-            </p>
-            <a href="detail-berita.html?id=5" class="btn-read-more">
-              Baca Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- News Card 6 -->
-      <div
-        class="col-lg-4 col-md-6 news-item"
-        data-aos="fade-up"
-        data-aos-delay="300"
-        data-category="sosial"
-      >
-        <div class="news-card">
-          <div class="news-image">
-            <img
-              src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400&h=250&fit=crop"
-              alt="Penghijauan"
-            />
-            <span class="news-badge">Sosial</span>
-          </div>
-          <div class="news-content">
-            <div class="news-meta">
-              <span><i class="bi bi-calendar3 me-1"></i>28 Jan 2026</span>
-              <span><i class="bi bi-person me-1"></i>Admin OSIS</span>
-            </div>
-            <h4 class="news-title">Program Penghijauan Lingkungan Sekolah</h4>
-            <p class="news-excerpt">
-              OSIS mengadakan program penghijauan dengan menanam 100 pohon di
-              area sekolah untuk menciptakan lingkungan yang lebih asri.
-            </p>
-            <a href="detail-berita.html?id=6" class="btn-read-more">
-              Baca Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- News Card 7 -->
-      <div
-        class="col-lg-4 col-md-6 news-item"
-        data-aos="fade-up"
-        data-aos-delay="100"
-        data-category="event"
-      >
-        <div class="news-card">
-          <div class="news-image">
-            <img
-              src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=250&fit=crop"
-              alt="Study Tour"
-            />
-            <span class="news-badge">Event</span>
-          </div>
-          <div class="news-content">
-            <div class="news-meta">
-              <span><i class="bi bi-calendar3 me-1"></i>25 Jan 2026</span>
-              <span><i class="bi bi-person me-1"></i>Admin OSIS</span>
-            </div>
-            <h4 class="news-title">Study Tour ke Museum Nasional Jakarta</h4>
-            <p class="news-excerpt">
-              Kegiatan study tour dilaksanakan untuk menambah wawasan siswa
-              tentang sejarah dan budaya Indonesia.
-            </p>
-            <a href="detail-berita.html?id=7" class="btn-read-more">
-              Baca Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- News Card 8 -->
-      <div
-        class="col-lg-4 col-md-6 news-item"
-        data-aos="fade-up"
-        data-aos-delay="200"
-        data-category="prestasi"
-      >
-        <div class="news-card">
-          <div class="news-image">
-            <img
-              src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=400&h=250&fit=crop"
-              alt="Prestasi"
-            />
-            <span class="news-badge">Prestasi</span>
-          </div>
-          <div class="news-content">
-            <div class="news-meta">
-              <span><i class="bi bi-calendar3 me-1"></i>20 Jan 2026</span>
-              <span><i class="bi bi-person me-1"></i>Admin OSIS</span>
-            </div>
-            <h4 class="news-title">
-              Raih Juara Harapan Lomba Tari Tradisional
-            </h4>
-            <p class="news-excerpt">
-              Tim kesenian OSIS berhasil meraih juara harapan dalam lomba tari
-              tradisional tingkat kota dengan membawakan tari Saman.
-            </p>
-            <a href="detail-berita.html?id=8" class="btn-read-more">
-              Baca Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- News Card 9 -->
-      <div
-        class="col-lg-4 col-md-6 news-item"
-        data-aos="fade-up"
-        data-aos-delay="300"
-        data-category="event"
-      >
-        <div class="news-card">
-          <div class="news-image">
-            <img
-              src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&h=250&fit=crop"
-              alt="Seminar"
-            />
-            <span class="news-badge">Event</span>
-          </div>
-          <div class="news-content">
-            <div class="news-meta">
-              <span><i class="bi bi-calendar3 me-1"></i>15 Jan 2026</span>
-              <span><i class="bi bi-person me-1"></i>Admin OSIS</span>
-            </div>
-            <h4 class="news-title">
-              Seminar Motivasi "Meraih Mimpi di Era Digital"
-            </h4>
-            <p class="news-excerpt">
-              OSIS menghadirkan motivator muda untuk memberikan seminar tentang
-              bagaimana meraih kesuksesan di era digital.
-            </p>
-            <a href="detail-berita.html?id=9" class="btn-read-more">
-              Baca Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+      {% endfor %}
 
     <!-- Pagination -->
     <div class="d-flex justify-content-center mt-5" data-aos="fade-up">
       <nav aria-label="Page navigation">
+        {% if news_list.has_other_pages %}
         <ul class="pagination pagination-modern">
-          <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1">
+          {% if news_list.number > 1 %}
+          <li class="page-item">
+            <a class="page-link" href="?page=1" aria-label="First">
+              <span aria-hidden="true">&laquo;&laquo;</span>
+            </a>
+          </li>
+          {% endif %}
+
+          {% if news_list.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page=1" aria-label="Previous">
               <i class="bi bi-chevron-left"></i>
             </a>
           </li>
-          <li class="page-item active"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#">
-              <i class="bi bi-chevron-right"></i>
-            </a>
-          </li>
+          {% endif %}
+
+          
+          {% for i in news_list.paginator.page_range  %}
+            {% if i >= news_list.number|add:"-2" and i <= news_list.number|add:"2" %}
+              {% if news_list.number == i %}
+                <li class="page-item active"><a class="page-link" href="#">{{ i }} </a></li>
+              {% else %}
+                <li class="page-item">
+                  <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                </li>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+          
+          {% comment %} tombol next {% endcomment %}
+          {% if news_list.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ news_list.next_page_number }}" aria-label="Next">
+                <span aria-hidden="true">Next</span>
+                </a>
+            </li>
+          {% endif %}
+
+          {# Tombol ke halaman terakhir #}
+          {% if news_list.number < news_list.paginator.num_pages %}
+              <li class="page-item">
+                  <a class="page-link" href="?page={{ news_list.paginator.num_pages }}" aria-label="Last">
+                  <span aria-hidden="true">&raquo;&raquo;</span>
+                  </a>
+              </li>
+          {% endif %}
         </ul>
+        {% endif %}
       </nav>
     </div>
   </div>

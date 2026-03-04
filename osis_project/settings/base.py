@@ -89,7 +89,12 @@ CKEDITOR_5_CONFIGS = {
         'blockToolbar': [
             'paragraph', 'heading1', 'heading2', 'inlineTextDecoration'
         ],
-        'toolbar': ['bold', 'italic', 'link', 'uploadImage', 'bulletedList', 'numberedList'],
+        'toolbar': [
+            'heading', '|', 
+            'bold', 'italic', 'link', 'underline', 'strikethrough', '|',
+            'bulletedList', 'numberedList', 'blockQuote', '|',
+            'undo', 'redo'
+        ],
     },
 }
 
@@ -102,5 +107,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') #fungsi untuk collecstatic s
 MEDIA_URL = '/media/' # fungsi agar browser akses media/(nama folder media/foto)/foto.jpg
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #lokasi menyimpan fotonya di local
 
+# redirect setelah login dan logout
+LOGIN_URL = 'accounts:login'
+LOGIN_REDIRECT_URL = 'dashboard:dashboard_index'
+LOGOUT_REDIRECT_URL = 'accounts:login'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

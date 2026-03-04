@@ -1,4 +1,24 @@
-{% include "base.html" %} {% block 'content' %}
+{% include "base.html" %} {% block 'content' %} {% load static %}
+
+<script>
+  // Gunakan var agar bisa diakses secara global oleh script.js
+    var currentImageIndex = 0;
+    var activeGalleryData = [];
+
+  const fullGalleryData = [
+      {% for gallery in list_gallery %}
+      {
+          src: "{{ gallery.image.url }}",
+          title: "{{ gallery.title|escapejs }}",
+          description: "{{ gallery.description|escapejs }}",
+          date: "{{ gallery.created_at|date:'d M Y' }}",
+      }{% if not forloop.last %},{% endif %}
+      {% endfor %}
+  ];
+
+  // Set data awal
+  activeGalleryData = fullGalleryData;;
+</script>
 <!-- Navbar Glassmorphism -->
 {% include "partials/navbar.html" %}
 
@@ -41,227 +61,7 @@
 <section class="py-5">
   <div class="container">
     <div class="gallery-grid" id="galleryContainer">
-      <!-- Gallery Item 1 -->
-      <div
-        class="gallery-item"
-        data-aos="zoom-in"
-        data-aos-delay="100"
-        data-bs-toggle="modal"
-        data-bs-target="#galleryModal"
-        data-category="event"
-        onclick="showImage(0)"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=400&h=400&fit=crop"
-          alt="Pelantikan OSIS"
-        />
-        <div class="gallery-overlay">
-          <i class="bi bi-zoom-in"></i>
-          <p class="gallery-title">Pelantikan OSIS 2025/2026</p>
-        </div>
-      </div>
-
-      <!-- Gallery Item 2 -->
-      <div
-        class="gallery-item"
-        data-aos="zoom-in"
-        data-aos-delay="200"
-        data-bs-toggle="modal"
-        data-bs-target="#galleryModal"
-        data-category="event"
-        onclick="showImage(1)"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&h=400&fit=crop"
-          alt="Seminar Motivasi"
-        />
-        <div class="gallery-overlay">
-          <i class="bi bi-zoom-in"></i>
-          <p class="gallery-title">Seminar Motivasi</p>
-        </div>
-      </div>
-
-      <!-- Gallery Item 3 -->
-      <div
-        class="gallery-item"
-        data-aos="zoom-in"
-        data-aos-delay="300"
-        data-bs-toggle="modal"
-        data-bs-target="#galleryModal"
-        data-category="event"
-        onclick="showImage(2)"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=400&h=400&fit=crop"
-          alt="Lomba Debat"
-        />
-        <div class="gallery-overlay">
-          <i class="bi bi-zoom-in"></i>
-          <p class="gallery-title">Lomba Debat Antar Kelas</p>
-        </div>
-      </div>
-
-      <!-- Gallery Item 4 -->
-      <div
-        class="gallery-item"
-        data-aos="zoom-in"
-        data-aos-delay="400"
-        data-bs-toggle="modal"
-        data-bs-target="#galleryModal"
-        data-category="event"
-        onclick="showImage(3)"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=400&fit=crop"
-          alt="Workshop Public Speaking"
-        />
-        <div class="gallery-overlay">
-          <i class="bi bi-zoom-in"></i>
-          <p class="gallery-title">Workshop Public Speaking</p>
-        </div>
-      </div>
-
-      <!-- Gallery Item 5 -->
-      <div
-        class="gallery-item"
-        data-aos="zoom-in"
-        data-aos-delay="500"
-        data-bs-toggle="modal"
-        data-bs-target="#galleryModal"
-        data-category="event"
-        onclick="showImage(4)"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=400&fit=crop"
-          alt="Study Tour"
-        />
-        <div class="gallery-overlay">
-          <i class="bi bi-zoom-in"></i>
-          <p class="gallery-title">Study Tour Museum</p>
-        </div>
-      </div>
-
-      <!-- Gallery Item 6 -->
-      <div
-        class="gallery-item"
-        data-aos="zoom-in"
-        data-aos-delay="600"
-        data-bs-toggle="modal"
-        data-bs-target="#galleryModal"
-        data-category="kesenian"
-        onclick="showImage(5)"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=400&h=400&fit=crop"
-          alt="Tari Tradisional"
-        />
-        <div class="gallery-overlay">
-          <i class="bi bi-zoom-in"></i>
-          <p class="gallery-title">Lomba Tari Tradisional</p>
-        </div>
-      </div>
-
-      <!-- Gallery Item 7 -->
-      <div
-        class="gallery-item"
-        data-aos="zoom-in"
-        data-aos-delay="100"
-        data-bs-toggle="modal"
-        data-bs-target="#galleryModal"
-        data-category="event"
-        onclick="showImage(6)"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=400&fit=crop"
-          alt="Upacara Bendera"
-        />
-        <div class="gallery-overlay">
-          <i class="bi bi-zoom-in"></i>
-          <p class="gallery-title">Upacara Bendera</p>
-        </div>
-      </div>
-
-      <!-- Gallery Item 8 -->
-      <div
-        class="gallery-item"
-        data-aos="zoom-in"
-        data-aos-delay="200"
-        data-bs-toggle="modal"
-        data-bs-target="#galleryModal"
-        data-category="prestasi"
-        onclick="showImage(7)"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&h=400&fit=crop"
-          alt="Prestasi KTI"
-        />
-        <div class="gallery-overlay">
-          <i class="bi bi-zoom-in"></i>
-          <p class="gallery-title">Juara Karya Tulis Ilmiah</p>
-        </div>
-      </div>
-
-      <!-- Gallery Item 9 -->
-      <div
-        class="gallery-item"
-        data-aos="zoom-in"
-        data-aos-delay="300"
-        data-bs-toggle="modal"
-        data-bs-target="#galleryModal"
-        data-category="sosial"
-        onclick="showImage(8)"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=400&fit=crop"
-          alt="Bakti Sosial"
-        />
-        <div class="gallery-overlay">
-          <i class="bi bi-zoom-in"></i>
-          <p class="gallery-title">Bakti Sosial Panti Asuhan</p>
-        </div>
-      </div>
-
-      <!-- Gallery Item 10 -->
-      <div
-        class="gallery-item"
-        data-aos="zoom-in"
-        data-aos-delay="400"
-        data-bs-toggle="modal"
-        data-bs-target="#galleryModal"
-        data-category="sosial"
-        onclick="showImage(9)"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400&h=400&fit=crop"
-          alt="Penghijauan"
-        />
-        <div class="gallery-overlay">
-          <i class="bi bi-zoom-in"></i>
-          <p class="gallery-title">Program Penghijauan</p>
-        </div>
-      </div>
-
-      <!-- Gallery Item 11 -->
-      <div
-        class="gallery-item"
-        data-aos="zoom-in"
-        data-aos-delay="500"
-        data-bs-toggle="modal"
-        data-bs-target="#galleryModal"
-        data-category="event"
-        onclick="showImage(10)"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=400&h=400&fit=crop"
-          alt="Turnamen Futsal"
-        />
-        <div class="gallery-overlay">
-          <i class="bi bi-zoom-in"></i>
-          <p class="gallery-title">Turnamen Futsal</p>
-        </div>
-      </div>
-
-      <!-- Gallery Item 12 -->
+      {% for gallery in list_gallery %}
       <div
         class="gallery-item"
         data-aos="zoom-in"
@@ -269,157 +69,73 @@
         data-bs-toggle="modal"
         data-bs-target="#galleryModal"
         data-category="event"
-        onclick="showImage(11)"
+        onclick="showImage({{ forloop.counter0 }})"
       >
         <img
-          src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?w=400&h=400&fit=crop"
-          alt="Pelatihan Kepemimpinan"
+          src="{{ gallery.image_thumbnail.url }}"
+          alt="{{ gallery.title }}"
         />
         <div class="gallery-overlay">
           <i class="bi bi-zoom-in"></i>
-          <p class="gallery-title">Pelatihan Kepemimpinan</p>
+          <p class="gallery-title">{{ gallery.title }}</p>
         </div>
       </div>
-
-      <!-- Gallery Item 13 -->
-      <div
-        class="gallery-item"
-        data-aos="zoom-in"
-        data-aos-delay="100"
-        data-bs-toggle="modal"
-        data-bs-target="#galleryModal"
-        data-category="sosial"
-        onclick="showImage(12)"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?w=400&h=400&fit=crop"
-          alt="Donor Darah"
-        />
-        <div class="gallery-overlay">
-          <i class="bi bi-zoom-in"></i>
-          <p class="gallery-title">Donor Darah PMI</p>
-        </div>
-      </div>
-
-      <!-- Gallery Item 14 -->
-      <div
-        class="gallery-item"
-        data-aos="zoom-in"
-        data-aos-delay="200"
-        data-bs-toggle="modal"
-        data-bs-target="#galleryModal"
-        data-category="event"
-        onclick="showImage(13)"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=400&fit=crop"
-          alt="Rapat Koordinasi"
-        />
-        <div class="gallery-overlay">
-          <i class="bi bi-zoom-in"></i>
-          <p class="gallery-title">Rapat Koordinasi OSIS</p>
-        </div>
-      </div>
-
-      <!-- Gallery Item 15 -->
-      <div
-        class="gallery-item"
-        data-aos="zoom-in"
-        data-aos-delay="300"
-        data-bs-toggle="modal"
-        data-bs-target="#galleryModal"
-        data-category="kesenian"
-        onclick="showImage(14)"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=400&h=400&fit=crop"
-          alt="Musik Akustik"
-        />
-        <div class="gallery-overlay">
-          <i class="bi bi-zoom-in"></i>
-          <p class="gallery-title">Pentas Musik Akustik</p>
-        </div>
-      </div>
-
-      <!-- Gallery Item 16 -->
-      <div
-        class="gallery-item"
-        data-aos="zoom-in"
-        data-aos-delay="400"
-        data-bs-toggle="modal"
-        data-bs-target="#galleryModal"
-        data-category="event"
-        onclick="showImage(15)"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=400&h=400&fit=crop"
-          alt="Kompetisi Basket"
-        />
-        <div class="gallery-overlay">
-          <i class="bi bi-zoom-in"></i>
-          <p class="gallery-title">Kompetisi Basket</p>
-        </div>
-      </div>
-
-      <!-- Gallery Item 17 -->
-      <div
-        class="gallery-item"
-        data-aos="zoom-in"
-        data-aos-delay="500"
-        data-bs-toggle="modal"
-        data-bs-target="#galleryModal"
-        data-category="prestasi"
-        onclick="showImage(16)"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1533929736458-ca588d08c8be?w=400&h=400&fit=crop"
-          alt="Pameran Karya"
-        />
-        <div class="gallery-overlay">
-          <i class="bi bi-zoom-in"></i>
-          <p class="gallery-title">Pameran Karya Siswa</p>
-        </div>
-      </div>
-
-      <!-- Gallery Item 18 -->
-      <div
-        class="gallery-item"
-        data-aos="zoom-in"
-        data-aos-delay="600"
-        data-bs-toggle="modal"
-        data-bs-target="#galleryModal"
-        data-category="event"
-        onclick="showImage(17)"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400&h=400&fit=crop"
-          alt="Team Building"
-        />
-        <div class="gallery-overlay">
-          <i class="bi bi-zoom-in"></i>
-          <p class="gallery-title">Team Building OSIS</p>
-        </div>
-      </div>
+      {% endfor %}
     </div>
 
     <!-- Pagination -->
     <div class="d-flex justify-content-center mt-5" data-aos="fade-up">
       <nav aria-label="Page navigation">
+        {% if list_gallery.has_other_pages %}
         <ul class="pagination pagination-modern">
-          <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1">
+          {% if list_gallery.number > 1 %}
+          <li class="page-item">
+            <a class="page-link" href="?page=1" aria-label="First">
+              <span aria-hidden="true">&laquo;&laquo;</span>
+            </a>
+          </li>
+          {% endif %}
+
+          {% if list_gallery.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page=1" aria-label="Previous">
               <i class="bi bi-chevron-left"></i>
             </a>
           </li>
-          <li class="page-item active"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#">
-              <i class="bi bi-chevron-right"></i>
-            </a>
-          </li>
+          {% endif %}
+
+          
+          {% for i in list_gallery.paginator.page_range  %}
+            {% if i >= list_gallery.number|add:"-2" and i <= list_gallery.number|add:"2" %}
+              {% if list_gallery.number == i %}
+                <li class="page-item active"><a class="page-link" href="#">{{ i }} </a></li>
+              {% else %}
+                <li class="page-item">
+                  <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                </li>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+          
+          {% comment %} tombol next {% endcomment %}
+          {% if list_gallery.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ list_gallery.next_page_number }}" aria-label="Next">
+                <span aria-hidden="true">Next</span>
+                </a>
+            </li>
+          {% endif %}
+
+          {# Tombol ke halaman terakhir #}
+          {% if list_gallery.number < list_gallery.paginator.num_pages %}
+              <li class="page-item">
+                  <a class="page-link" href="?page={{ list_gallery.paginator.num_pages }}" aria-label="Last">
+                  <span aria-hidden="true">&raquo;&raquo;</span>
+                  </a>
+              </li>
+          {% endif %}
         </ul>
+        {% endif %}
       </nav>
     </div>
   </div>
@@ -471,19 +187,8 @@
                   <i class="bi bi-calendar3"></i>
                   <span id="modalDate"></span>
                 </div>
-                <div class="meta-item">
-                  <i class="bi bi-eye"></i>
-                  <span id="modalViews"></span>
-                </div>
-                <div class="meta-item">
-                  <i class="bi bi-heart"></i>
-                  <span id="modalLikes"></span>
-                </div>
               </div>
               <div class="modal-actions">
-                <button class="btn btn-primary btn-sm w-100 mb-2">
-                  <i class="bi bi-download me-2"></i>Download
-                </button>
                 <button class="btn btn-outline-light btn-sm w-100">
                   <i class="bi bi-share me-2"></i>Bagikan
                 </button>
@@ -495,6 +200,28 @@
     </div>
   </div>
 </div>
-
 <!-- Footer -->
+<script>
+  function openGalleryModal(index) {
+    currentImageIndex = index;
+    updateModalContent();
+    // Kode untuk menampilkan modal Bootstrap (jika tidak otomatis via data-bs-toggle)
+    const myModal = new bootstrap.Modal(
+      document.getElementById("galleryModal"),
+    );
+    myModal.show();
+  }
+
+  function navigateImage(direction) {
+    currentImageIndex += direction;
+
+    // Boundary check (agar tidak kebablasan)
+    if (currentImageIndex < 0) currentImageIndex = activeGalleryData.length - 1;
+    if (currentImageIndex >= activeGalleryData.length) currentImageIndex = 0;
+
+    updateModalContent();
+  }
+</script>
+
+<script src="{% static 'js/script.js' %}"></script>
 {% include "partials/footer.html" %} {% endblock 'content' %}
