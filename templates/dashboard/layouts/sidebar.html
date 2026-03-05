@@ -1,0 +1,55 @@
+<div class="wrapper">
+  <nav id="sidebar" class="sidebar js-sidebar">
+    <div class="sidebar-content js-simplebar">
+      <a class="sidebar-brand" href="{% url 'dashboard:dashboard_index' %}">
+        <span class="align-middle">Dashboard Admin</span>
+      </a>
+
+      <ul class="sidebar-nav">
+        <li class="sidebar-header">
+          Pages
+        </li>
+
+        <li class="sidebar-item active">
+          <a class="sidebar-link" href="{% url 'dashboard:dashboard_index' %}">
+            <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+          </a>
+        </li>
+
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="pages-profile.html">
+            <i class="align-middle" data-feather="tag"></i> <span class="align-middle">Manage HomePage</span>
+          </a>
+        </li>
+
+        <li class="sidebar-header">Content</li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="{% url 'dashboard:list_activity' %} ">
+            <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Manage Activity</span>
+          </a>
+        </li>
+
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="{% url 'dashboard:list_gallery' %}">
+            <i class="align-middle" data-feather="film"></i> <span class="align-middle">Manage Gallery</span>
+          </a>
+        </li>
+
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="pages-blank.html">
+            <i class="align-middle" data-feather="phone"></i> <span class="align-middle">Manage Contact</span>
+          </a>
+        </li>
+
+        <li class="sidebar-header">
+          Interactions
+        </li>
+
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="{% url 'accounts:logout' %}">
+            <i class="align-middle" data-feather="log-out"></i> <span class="align-middle">Logout</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
