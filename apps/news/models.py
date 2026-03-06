@@ -19,11 +19,17 @@ class Category(models.Model):
             
 
 class News(models.Model):
+    STATUS_CHOICES = [
+        ('draft', 'Draft'),
+        ('publish', 'Publish')
+    ]
+    
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='news')
     title = models.CharField(max_length=250)
     slug = models.SlugField(unique=True,blank=True, editable=False)
     content = CKEditor5Field('Content', config_name='extends')
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
     
     # untuk detail news 
     image = ProcessedImageField(

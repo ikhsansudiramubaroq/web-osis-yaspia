@@ -3,6 +3,17 @@
 {% block content %}
 			<main class="content">
 				<div class="container-fluid p-0">
+					{% if messages %}
+						{% for message in messages %}
+							{# Tambahkan logika IF untuk mengubah 'error' menjadi 'danger' #}
+							<div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+								<div class="alert-message">
+									{{ message }}
+								</div>
+								<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+							</div>
+						{% endfor %}
+					{% endif %}
 
 					<h1 class="h3 mb-3"><strong>List</strong> Activity</h1>
 
@@ -13,75 +24,48 @@
 
 									<h5 class="card-title mb-0">Daftar Kegiatan OSIS</h5>
 								</div>
-								<table class="table table-hover my-0">
+								<div class="card-body">
+									<a class="btn btn-success w-25" href="{% url 'dashboard:add_activity' %} ">
+										<i class="align-middle fw-bold " data-feather="plus-square"></i>
+										Tambah Kegiatan
+									</a>
+								<table class="table table-hover my-0 display" id="myTable">
 									<thead>
 										<tr>
 											<th>Title</th>
-											<th class="d-none d-xl-table-cell">Start Date</th>
-											<th class="d-none d-xl-table-cell">End Date</th>
+											<th class="d-none d-xl-table-cell">Date Publish</th>
+											<th class="d-none d-xl-table-cell">Category</th>
 											<th>Status</th>
-											<th class="d-none d-md-table-cell">Assignee</th>
+											<th class="d-none d-md-table-cell">Author</th>
+											<th class="d-none d-md-table-cell">Action</th>
 										</tr>
 									</thead>
 									<tbody>
+										
+										{% for act in list_activity  %}
 										<tr>
-											<td>Project Apollo</td>
-											<td class="d-none d-xl-table-cell">01/01/2023</td>
-											<td class="d-none d-xl-table-cell">31/06/2023</td>
-											<td><span class="badge bg-success">Done</span></td>
-											<td class="d-none d-md-table-cell">Vanessa Tucker</td>
+											<td>{{ act.title }} </td>
+											<td class="d-none d-xl-table-cell">{{ act.created_at|date:"d M Y" }} </td>
+											<td class="d-none d-xl-table-cell">{{ act.category }} </td>
+											<td>
+												{% if act.status == 'draft' %}
+												<span class="badge bg-danger">draft</span>
+												{% else %}
+												<span class="badge bg-success">Publish</span>
+												{% endif %}
+											</td>
+											<td class="d-none d-md-table-cell">{{ act.author.first_name }} </td>
+											<td class="d-none d-xl-table-cell">
+												<button class="btn btn-primary"><i class="align-middle" data-feather="edit"></i></button>  |
+												<button class="btn btn-success"><i class="align-middle" data-feather="eye"></i></button>  |
+												<button class="btn btn-danger"><i class="align-middle" data-feather="trash"></i></button>
+											</td>
 										</tr>
-										<tr>
-											<td>Project Fireball</td>
-											<td class="d-none d-xl-table-cell">01/01/2023</td>
-											<td class="d-none d-xl-table-cell">31/06/2023</td>
-											<td><span class="badge bg-danger">Cancelled</span></td>
-											<td class="d-none d-md-table-cell">William Harris</td>
-										</tr>
-										<tr>
-											<td>Project Hades</td>
-											<td class="d-none d-xl-table-cell">01/01/2023</td>
-											<td class="d-none d-xl-table-cell">31/06/2023</td>
-											<td><span class="badge bg-success">Done</span></td>
-											<td class="d-none d-md-table-cell">Sharon Lessman</td>
-										</tr>
-										<tr>
-											<td>Project Nitro</td>
-											<td class="d-none d-xl-table-cell">01/01/2023</td>
-											<td class="d-none d-xl-table-cell">31/06/2023</td>
-											<td><span class="badge bg-warning">In progress</span></td>
-											<td class="d-none d-md-table-cell">Vanessa Tucker</td>
-										</tr>
-										<tr>
-											<td>Project Phoenix</td>
-											<td class="d-none d-xl-table-cell">01/01/2023</td>
-											<td class="d-none d-xl-table-cell">31/06/2023</td>
-											<td><span class="badge bg-success">Done</span></td>
-											<td class="d-none d-md-table-cell">William Harris</td>
-										</tr>
-										<tr>
-											<td>Project X</td>
-											<td class="d-none d-xl-table-cell">01/01/2023</td>
-											<td class="d-none d-xl-table-cell">31/06/2023</td>
-											<td><span class="badge bg-success">Done</span></td>
-											<td class="d-none d-md-table-cell">Sharon Lessman</td>
-										</tr>
-										<tr>
-											<td>Project Romeo</td>
-											<td class="d-none d-xl-table-cell">01/01/2023</td>
-											<td class="d-none d-xl-table-cell">31/06/2023</td>
-											<td><span class="badge bg-success">Done</span></td>
-											<td class="d-none d-md-table-cell">Christina Mason</td>
-										</tr>
-										<tr>
-											<td>Project Wombat</td>
-											<td class="d-none d-xl-table-cell">01/01/2023</td>
-											<td class="d-none d-xl-table-cell">31/06/2023</td>
-											<td><span class="badge bg-warning">In progress</span></td>
-											<td class="d-none d-md-table-cell">William Harris</td>
-										</tr>
+										
+										{% endfor %}
 									</tbody>
 								</table>
+								</div>
 							</div>
 						</div>
 					</div>

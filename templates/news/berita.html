@@ -7,7 +7,7 @@
   <div class="container">
     <div class="row align-items-center">
       <div class="col-lg-8" data-aos="fade-right">
-        <h1 class="page-title">Berita & Informasi</h1>
+        <h1 class="page-title">Kegiatan & Informasi</h1>
         <p class="page-subtitle">
           Update terbaru seputar kegiatan dan prestasi OSIS SMK
         </p>
@@ -72,7 +72,7 @@
           <div class="news-content">
             <div class="news-meta">
               <span><i class="bi bi-calendar3 me-1"></i>{{ news.created_at|date:"d M Y" }} </span>
-              <span><i class="bi bi-person me-1"></i>{{ request.user }} </span>
+              <span><i class="bi bi-person me-1"></i>{{ news.author.first_name }} </span>
             </div>
             <h4 class="news-title">
               {{ news.title|truncatechars:30 }}

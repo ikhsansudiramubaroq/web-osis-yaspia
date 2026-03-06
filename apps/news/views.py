@@ -19,9 +19,9 @@ def news_list(request) :
 def detail_news(request, slug_news):
     # Gunakan .only() untuk Postgres agar tidak membebani memory (ambil field yang perlu saja)
     news_item = get_object_or_404(
-        News.objects.select_related('category', 'user').only(
+        News.objects.select_related('category', 'author').only(
             'title', 'content', 'image', 'created_at', 
-            'category__name', 'user__username'
+            'category__name', 'author__first_name'
         ),
         slug=slug_news
     )

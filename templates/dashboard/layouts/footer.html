@@ -29,7 +29,9 @@
 		</div>
 	</div>
 
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<script src="{% static 'dashboard/js/app.js' %} "></script>
+	<script src="{% static 'dashboard/DataTables/datatables.min.js' %} "></script>
 
 	<script>
 		document.addEventListener("DOMContentLoaded", function() {
@@ -251,6 +253,33 @@
 				defaultDate: defaultDate
 			});
 		});
+	</script>
+	<script>
+	$(document).ready(function() {
+    $('#myTable').DataTable({
+        "paging": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "scrollX": true, // Pastikan ada koma di sini
+        "responsive": true,
+        "layout": {
+            topStart: {
+                features: [
+                    {
+                        // Menambahkan margin agar tidak mepet ke pinggir
+                        pageLength: {
+                            select: [10, 25, 50, 100]
+                        }
+                    }
+                ]
+            },
+            topEnd: 'search',
+            bottomStart: 'info',
+            bottomEnd: 'paging'
+        }
+    });
+});
 	</script>
 
 </body>
