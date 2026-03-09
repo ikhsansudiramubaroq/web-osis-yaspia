@@ -10,9 +10,14 @@ class Category(models.Model):
         return self.name
 
 class Gallery(models.Model):
+    STATUS_CHOICES = [
+        ('draft', 'Draft'),
+        ('publish', 'Publish')
+    ]
     title = models.CharField(max_length=100)
     category = models.ForeignKey(Category, on_delete=models.CASCADE,null=True, blank=True ,related_name='gallery')
     description = models.TextField()
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
     
     # untuk detail gallery 
     image = ProcessedImageField(

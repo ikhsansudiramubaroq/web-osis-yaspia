@@ -46,9 +46,12 @@
         </li>
 
         <li class="sidebar-item">
-          <a class="sidebar-link" href="{% url 'accounts:logout' %}">
+          <a class="sidebar-link" href="javascript:void(0)" onclick="confirmLogout()">
             <i class="align-middle" data-feather="log-out"></i> <span class="align-middle">Logout</span>
           </a>
+          <form id="logout-form" action="{% url 'accounts:logout' %}" method="POST" style="display: none;">
+              {% csrf_token %}
+          </form>
         </li>
       </ul>
     </div>

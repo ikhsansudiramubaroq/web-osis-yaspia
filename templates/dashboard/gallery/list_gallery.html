@@ -11,77 +11,53 @@
 							<div class="card flex-fill">
 								<div class="card-header">
 
-									<h5 class="card-title mb-0">Daftar Gallery OSIS</h5>
+									<h5 class="card-title mb-0">Daftar Foto OSIS</h5>
 								</div>
-								<table class="table table-hover my-0">
+								<div class="card-body">
+									<a class="btn btn-success w-25" href="{% url 'dashboard:add_gallery' %} ">
+										<i class="align-middle fw-bold " data-feather="plus-square"></i>
+										Tambah Foto
+									</a>
+								<table class="table table-hover my-0 display" id="myTable">
 									<thead>
 										<tr>
 											<th>Title</th>
-											<th class="d-none d-xl-table-cell">Start Date</th>
-											<th class="d-none d-xl-table-cell">End Date</th>
+											<th class="d-none d-xl-table-cell">Date Publish</th>
+											<th class="d-none d-xl-table-cell">Category</th>
 											<th>Status</th>
-											<th class="d-none d-md-table-cell">Assignee</th>
+											<th class="d-none d-md-table-cell">Action</th>
 										</tr>
 									</thead>
 									<tbody>
+										
+										{% for gal in list_gallery  %}
 										<tr>
-											<td>Project Apollo</td>
-											<td class="d-none d-xl-table-cell">01/01/2023</td>
-											<td class="d-none d-xl-table-cell">31/06/2023</td>
-											<td><span class="badge bg-success">Done</span></td>
-											<td class="d-none d-md-table-cell">Vanessa Tucker</td>
+											<td>{{ gal.title }} </td>
+											<td class="d-none d-xl-table-cell">{{ gal.created_at|date:"d M Y" }} </td>
+											<td class="d-none d-xl-table-cell">{{ gal.category }} </td>
+											<td>
+												{% if gal.status == 'draft' %}
+												<span class="badge bg-danger">draft</span>
+												{% else %}
+												<span class="badge bg-success">Publish</span>
+												{% endif %}
+											</td>
+											<td class="d-none d-xl-table-cell">
+												<a href="{% url 'dashboard:edit_gallery' gal.id %}" class="btn btn-primary"><i class="align-middle" data-feather="edit"></i></a>  |
+												<button class="btn btn-success"><i class="align-middle" data-feather="eye"></i></button>  |
+												<form action="{% url 'dashboard:delete_gallery' gal.id %}" method="POST" style="display:inline;" onsubmit="return confirm('Yakin ingin menghapus data ini?');">
+													{% csrf_token %}
+													<button type="submit" class="btn btn-danger">
+														<i class="align-middle" data-feather="trash"></i>
+													</button>
+												</form>
+											</td>
 										</tr>
-										<tr>
-											<td>Project Fireball</td>
-											<td class="d-none d-xl-table-cell">01/01/2023</td>
-											<td class="d-none d-xl-table-cell">31/06/2023</td>
-											<td><span class="badge bg-danger">Cancelled</span></td>
-											<td class="d-none d-md-table-cell">William Harris</td>
-										</tr>
-										<tr>
-											<td>Project Hades</td>
-											<td class="d-none d-xl-table-cell">01/01/2023</td>
-											<td class="d-none d-xl-table-cell">31/06/2023</td>
-											<td><span class="badge bg-success">Done</span></td>
-											<td class="d-none d-md-table-cell">Sharon Lessman</td>
-										</tr>
-										<tr>
-											<td>Project Nitro</td>
-											<td class="d-none d-xl-table-cell">01/01/2023</td>
-											<td class="d-none d-xl-table-cell">31/06/2023</td>
-											<td><span class="badge bg-warning">In progress</span></td>
-											<td class="d-none d-md-table-cell">Vanessa Tucker</td>
-										</tr>
-										<tr>
-											<td>Project Phoenix</td>
-											<td class="d-none d-xl-table-cell">01/01/2023</td>
-											<td class="d-none d-xl-table-cell">31/06/2023</td>
-											<td><span class="badge bg-success">Done</span></td>
-											<td class="d-none d-md-table-cell">William Harris</td>
-										</tr>
-										<tr>
-											<td>Project X</td>
-											<td class="d-none d-xl-table-cell">01/01/2023</td>
-											<td class="d-none d-xl-table-cell">31/06/2023</td>
-											<td><span class="badge bg-success">Done</span></td>
-											<td class="d-none d-md-table-cell">Sharon Lessman</td>
-										</tr>
-										<tr>
-											<td>Project Romeo</td>
-											<td class="d-none d-xl-table-cell">01/01/2023</td>
-											<td class="d-none d-xl-table-cell">31/06/2023</td>
-											<td><span class="badge bg-success">Done</span></td>
-											<td class="d-none d-md-table-cell">Christina Mason</td>
-										</tr>
-										<tr>
-											<td>Project Wombat</td>
-											<td class="d-none d-xl-table-cell">01/01/2023</td>
-											<td class="d-none d-xl-table-cell">31/06/2023</td>
-											<td><span class="badge bg-warning">In progress</span></td>
-											<td class="d-none d-md-table-cell">William Harris</td>
-										</tr>
+										
+										{% endfor %}
 									</tbody>
 								</table>
+								</div>
 							</div>
 						</div>
 					</div>

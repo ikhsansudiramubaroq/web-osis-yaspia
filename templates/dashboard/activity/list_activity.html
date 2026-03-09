@@ -3,17 +3,6 @@
 {% block content %}
 			<main class="content">
 				<div class="container-fluid p-0">
-					{% if messages %}
-						{% for message in messages %}
-							{# Tambahkan logika IF untuk mengubah 'error' menjadi 'danger' #}
-							<div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
-								<div class="alert-message">
-									{{ message }}
-								</div>
-								<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-							</div>
-						{% endfor %}
-					{% endif %}
 
 					<h1 class="h3 mb-3"><strong>List</strong> Activity</h1>
 
@@ -56,9 +45,14 @@
 											</td>
 											<td class="d-none d-md-table-cell">{{ act.author.first_name }} </td>
 											<td class="d-none d-xl-table-cell">
-												<button class="btn btn-primary"><i class="align-middle" data-feather="edit"></i></button>  |
+												<a href="{% url 'dashboard:edit_activity' act.slug %}" class="btn btn-primary"><i class="align-middle" data-feather="edit"></i></a>  |
 												<button class="btn btn-success"><i class="align-middle" data-feather="eye"></i></button>  |
-												<button class="btn btn-danger"><i class="align-middle" data-feather="trash"></i></button>
+												<form action="{% url 'dashboard:delete_activity' act.slug %}" method="POST" style="display:inline;" onsubmit="return confirm('Yakin ingin menghapus data ini?');">
+													{% csrf_token %}
+													<button type="submit" class="btn btn-danger">
+														<i class="align-middle" data-feather="trash"></i>
+													</button>
+												</form>
 											</td>
 										</tr>
 										
