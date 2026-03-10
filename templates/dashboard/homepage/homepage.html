@@ -1,0 +1,117 @@
+{% extends "dashboard/layouts/base_dashboard.html" %}
+
+{% block content %}
+<main class="content">
+    <div class="container-fluid p-0">
+
+        <h1 class="h3 mb-3"><strong>Manage</strong> Homepage</h1>
+
+        <div class="row">
+            <div class="col-12 col-lg-4">
+                <div class="card shadow-sm">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="card-title mb-0">Hero Slider (Max 3)</h5>
+    </div>
+    <div class="card-body">
+        <div class="row g-2">
+            {% for h in hero_list %}
+                <div class="col-12 mb-3 border-bottom pb-2">
+                    <div class="position-relative">
+                        <img src="{{ h.image_hero.url }}" class="img-fluid rounded shadow-sm mb-2" style="width: 100%; height: 100px; object-fit: cover;">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <span class="small fw-bold d-block text-truncate" style="max-width: 150px;">{{ h.title_hero }}</span>
+                            </div>
+                            <div class="btn-group">
+                                <a href="{% url 'dashboard:edit_hero' h.id %}" class="btn btn-sm text-primary p-0 me-2"><i data-feather="edit-2" class="feather-sm"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="text-center py-3">
+                    <p class="text-muted small">Belum ada gambar hero.</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+                <div class="card shadow-sm">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Visi & Misi</h5>
+                        <a href="{% url 'dashboard:edit_visi' %}" class="btn btn-primary btn-sm"><i data-feather="edit-2"></i> Edit</a>
+                    </div>
+                    <div class="card-body">
+                        <label class="fw-bold small">Visi:</label>
+                        <p class="small text-muted">{{ visi.teks_visi|truncatechars:100|default:"Visi belum diatur" }}</p>
+                        <hr>
+                        <label class="fw-bold small">Misi ({{ misi_list.count }}):</label>
+                        <ul class="small text-muted ps-3">
+                            {% for m in misi_list %}
+                                <li>{{ m.misi }}</li>
+                            {% empty %}
+                                <li>Belum ada misi.</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-8">
+                <div class="card flex-fill">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Daftar Agenda Sekolah</h5>
+                        <a class="btn btn-success btn-sm" href="{% url 'dashboard:add_agenda' %}">
+                            <i data-feather="plus-circle"></i> Tambah Agenda
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-hover my-0" id="myTable">
+                            <thead>
+                                <tr>
+                                    <th>Agenda</th>
+                                    <th class="d-none d-md-table-cell">Waktu & Lokasi</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for agenda in list_agenda %}
+                                <tr>
+                                    <td>
+                                        <div class="fw-bold">{{ agenda.title_agenda }}</div>
+                                        <div class="text-muted small">{{ agenda.category_agenda }}</div>
+                                    </td>
+                                    <td class="d-none d-md-table-cell">
+                                        <div class="small"><i data-feather="calendar" class="feather-sm"></i> {{ agenda.date_agenda|date:"d M Y" }}</div>
+                                        <div class="small text-muted"><i data-feather="map-pin" class="feather-sm"></i> {{ agenda.location }}</div>
+                                    </td>
+                                    <td>
+                                        {% if agenda.status_agenda == 'draft' %}
+                                            <span class="badge bg-danger">Draft</span>
+                                        {% else %}
+                                            <span class="badge bg-success">Publish</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a href="{% url 'dashboard:edit_agenda' agenda.id %}" class="btn btn-sm btn-outline-primary"><i data-feather="edit"></i></a>
+                                            <form action="{% url 'dashboard:delete_agenda' agenda.id %}" method="POST" class="d-inline" onsubmit="return confirm('Hapus agenda ini?');">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-sm btn-outline-danger"><i data-feather="trash"></i></button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+{% endblock content %}

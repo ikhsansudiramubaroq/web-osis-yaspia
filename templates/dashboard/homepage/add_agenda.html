@@ -1,0 +1,74 @@
+{% extends "dashboard/layouts/base_dashboard.html" %}
+
+{% block content %}
+<main class="content">
+    <div class="container-fluid p-0">
+
+        <div class="mb-3 d-flex justify-content-between align-items-center">
+            <h1 class="h3 mb-3"><strong>Tambah</strong> Agenda Baru</h1>
+            <a href="{% url 'dashboard:manage_homepage' %}" class="btn btn-secondary btn-sm">
+                <i data-feather="arrow-left"></i> Kembali
+            </a>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-xl-8">
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Form Agenda Sekolah</h5>
+                        <p class="text-muted small">Isi detail agenda sekolah atau kegiatan OSIS di bawah ini.</p>
+                    </div>
+                    <div class="card-body">
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            
+                            <div class="row">
+                                <div class="col-md-8 mb-3">
+                                    <label class="form-label fw-bold">Judul Agenda</label>
+                                    {{ form.title_agenda }}
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label fw-bold">Kategori</label>
+                                    {{ form.category_agenda }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Deskripsi Kegiatan</label>
+                                {{ form.description_agenda }}
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label fw-bold">Tanggal</label>
+                                    {{ form.date_agenda }}
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label fw-bold">Waktu</label>
+                                    {{ form.time_agenda }}
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label fw-bold">Lokasi</label>
+                                    {{ form.location }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Status Publikasi</label>
+                                {{ form.status_agenda }}
+                            </div>
+
+                            <div class="border-top pt-3 d-flex justify-content-end mt-4">
+                                <button type="submit" class="btn btn-success px-4">
+                                    <i class="align-middle me-1" data-feather="check-circle"></i> Simpan Agenda
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+{% endblock content %}

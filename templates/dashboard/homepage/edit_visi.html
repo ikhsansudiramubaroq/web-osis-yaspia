@@ -1,0 +1,75 @@
+{% extends "dashboard/layouts/base_dashboard.html" %}
+
+{% block content %}
+<main class="content">
+    <div class="container-fluid p-0">
+        <div class="mb-3 d-flex justify-content-between align-items-center">
+            <h1 class="h3 mb-3"><strong>Manage</strong> Visi & Misi</h1>
+            <a href="{% url 'dashboard:manage_homepage' %}" class="btn btn-secondary btn-sm">
+                <i data-feather="arrow-left"></i> Kembali
+            </a>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-lg-7">
+                <div class="card shadow-sm">
+                    <div class="card-header"><h5 class="card-title mb-0">Update Visi Sekolah</h5></div>
+                    <div class="card-body">
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Teks Visi</label>
+                                {{ form.teks_visi }}
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    {% if visi.image_visi %}
+                                        <img src="{{ visi.image_visi.url }}" class="img-fluid rounded border mb-2">
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-8">
+                                    <label class="form-label fw-bold">Gambar Visi</label>
+                                    {{ form.image_visi }}
+                                    <label class="form-label fw-bold mt-2">Deskripsi Gambar</label>
+                                    {{ form.description_image }}
+                                </div>
+                            </div>
+                            <hr>
+                            <button type="submit" name="update_visi" class="btn btn-primary w-100">Simpan Perubahan Visi</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-5">
+                <div class="card shadow-sm">
+                    <div class="card-header"><h5 class="card-title mb-0">Daftar Misi</h5></div>
+                    <div class="card-body">
+                        <form action="" method="POST" class="mb-4">
+                            {% csrf_token %}
+                            <div class="input-group">
+                                <input type="text" name="misi_baru" class="form-control" placeholder="Tulis misi baru di sini..." required>
+                                <button class="btn btn-success" type="submit" name="add_misi">Tambah</button>
+                            </div>
+                        </form>
+
+                        <ul class="list-group">
+                            {% for m in misi_list %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center small">
+                                {{ forloop.counter }}. {{ m.misi }}
+                                <form action="{% url 'dashboard:delete_misi' m.id %}" method="POST" onsubmit="return confirm('Hapus poin misi ini?')">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-link text-danger p-0"><i data-feather="trash-2" class="feather-sm"></i></button>
+                                </form>
+                            </li>
+                            {% empty %}
+                            <li class="list-group-item text-center text-muted small">Belum ada misi yang ditambahkan.</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}

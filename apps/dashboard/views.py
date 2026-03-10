@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from news.models import News, Category
-from gallery.models import Gallery, Category as cat_gal
 from django.contrib.auth.decorators import login_required
-from .forms import ActivityForm, GalleryForm
 from django.contrib import messages
 import os
-from django.conf import settings
+from news.models import News, Category
+from gallery.models import Gallery, Category as cat_gal
+from home.models import Hero, Visi, Misi, Agenda
+from .forms import ActivityForm, GalleryForm, HeroForm, VisiForm, AgendaForm
 
 # Create your views here.
 
@@ -17,6 +17,106 @@ def dashboard_index(request):
         'total_gallery': Gallery.objects.count(),
     }
     return render(request, 'dashboard/index.html', context)
+
+# --- MANAGE HOMEPAGE ---
+@login_required # Hanya user login yang bisa akses dashboard
+def manage_homepage(request):
+    
+    hero_list = Hero.objects.all().order_by('-created_at')
+    #ambil data tunggal
+    visi = Visi.objects.first()
+    misi_list = Misi.objects.all()
+    
+    #data agenda untuk crud
+    list_agenda = Agenda.objects.all().order_by('date_agenda')
+    
+    context = {
+        'hero_list': hero_list,
+        'visi': visi,
+        'misi_list': misi_list,
+        'list_agenda': list_agenda,
+        'total_news': News.objects.count(),
+        'total_gallery': Gallery.objects.count(),
+    }
+    return render(request, 'dashboard/homepage/homepage.html', context)
+
+# --- EDIT HERO ---
+def edit_hero(request, id):
+    hero = get_object_or_404(Hero, id=id)
+    if request.method == "POST":
+        form = HeroForm(request.POST, request.FILES, instance=hero)
+        if form.is_valid():
+            # Best Practice: Hapus gambar lama jika upload baru
+            if 'image_hero' in request.FILES and hero.image_hero:
+                if os.path.isfile(hero.image_hero.path):
+                    os.remove(hero.image_hero.path)
+            form.save()
+            return redirect('dashboard:manage_homepage')
+    else:
+        form = HeroForm(instance=hero)
+    return render(request, 'dashboard/homepage/edit_hero.html', {'form': form, 'hero': hero})
+
+# --- EDIT VISI & MISI ---
+def edit_visi_misi(request):
+   # Ambil atau buat data Visi (ID=1)
+    visi, created = Visi.objects.get_or_create(id=1)
+    misi_list = Misi.objects.all()
+    
+    if request.method == "POST":
+        # Logika 1: Update Visi
+        if 'update_visi' in request.POST:
+            form = VisiForm(request.POST, request.FILES, instance=visi)
+            if form.is_valid():
+                form.save()
+                messages.success(request, "Visi berhasil diperbarui!")
+                return redirect('dashboard:edit_visi')
+        
+        # Logika 2: Tambah Misi Baru
+        elif 'add_misi' in request.POST:
+            teks_misi = request.POST.get('misi_baru')
+            if teks_misi:
+                Misi.objects.create(misi=teks_misi)
+                messages.success(request, "Misi baru berhasil ditambahkan!")
+            return redirect('dashboard:edit_visi')
+
+    else:
+        form = VisiForm(instance=visi)
+        
+    context = {
+        'form': form,
+        'visi': visi,
+        'misi_list': misi_list
+    }
+    return render(request, 'dashboard/homepage/edit_visi.html', context)
+
+# Fungsi tambahan untuk hapus misi lewat ID
+def delete_misi(request, id):
+    misi = get_object_or_404(Misi, id=id)
+    misi.delete()
+    messages.success(request, "Satu poin misi berhasil dihapus!")
+    return redirect('dashboard:edit_visi')
+
+# --- CRUD AGENDA ---
+def add_agenda(request):
+    form = AgendaForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('dashboard:manage_homepage')
+    return render(request, 'dashboard/homepage/add_agenda.html', {'form': form})
+
+def edit_agenda(request, id):
+    agenda = get_object_or_404(Agenda, id=id)
+    form = AgendaForm(request.POST or None, instance=agenda)
+    if form.is_valid():
+        form.save()
+        return redirect('dashboard:manage_homepage')
+    return render(request, 'dashboard/homepage/edit_agenda.html', {'form': form})
+
+def delete_agenda(request, id):
+    agenda = get_object_or_404(Agenda, id=id)
+    if request.method == "POST":
+        agenda.delete()
+    return redirect('dashboard:manage_homepage')
 
 # --- ACTIVITY SECTION ---
 @login_required

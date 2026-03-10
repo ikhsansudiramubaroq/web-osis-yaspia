@@ -1,6 +1,41 @@
 from django import forms
 from news.models import News
 from gallery.models import Gallery
+from home.models import Hero, Agenda, Visi, Misi
+
+class HeroForm(forms.ModelForm):
+    class Meta:
+        model = Hero
+        fields = ['title_hero', 'subtitle_hero', 'image_hero']
+        widgets = {
+            'title_hero': forms.TextInput(attrs={'class': 'form-control'}),
+            'subtitle_hero': forms.TextInput(attrs={'class': 'form-control'}),
+            'image_hero': forms.FileInput(attrs={'class': 'form-control'}),
+        }
+
+class VisiForm(forms.ModelForm):
+    class Meta:
+        model = Visi
+        fields = ['teks_visi', 'description_image', 'image_visi']
+        widgets = {
+            'teks_visi': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
+            'description_image': forms.TextInput(attrs={'class': 'form-control'}),
+            'image_visi': forms.FileInput(attrs={'class': 'form-control'}),
+        }
+
+class AgendaForm(forms.ModelForm):
+    class Meta:
+        model = Agenda
+        fields = '__all__'
+        widgets = {
+            'title_agenda': forms.TextInput(attrs={'class': 'form-control'}),
+            'category_agenda': forms.TextInput(attrs={'class': 'form-control'}),
+            'description_agenda': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+            'location': forms.TextInput(attrs={'class': 'form-control'}),
+            'date_agenda': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'time_agenda': forms.TimeInput(attrs={'class': 'form-control', 'type': 'time'}),
+            'status_agenda': forms.Select(attrs={'class': 'form-select'}),
+        }
 
 class ActivityForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
