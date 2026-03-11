@@ -113,8 +113,9 @@
           <div class="photo-decoration blob-2"></div>
           <img
             src="{{ visi.image_visi.url }}"
-            alt="Pengurus OSIS"
+            alt="{{ visi.description_image }} "
             class="img-fluid rounded-4 shadow-lg"
+            loading="lazy"
           />
           <div class="photo-badge">
             <i class="bi bi-people-fill me-2"></i>
@@ -147,7 +148,7 @@
       <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
         <div class="news-card">
           <div class="news-image">
-            <img src="{{ news.image_thumbnail.url }}" alt="Berita 1" />
+            <img src="{{ news.image_thumbnail.url }}" alt="{{ news.title }} " loading="lazy" />
             <span class="news-badge">{{ news.category }} </span>
           </div>
           <div class="news-content">
@@ -193,6 +194,7 @@
         <img
           src="{{ gallery.image_thumbnail.url }}"
           alt="{{ gallery.title }}"
+          loading="lazy"
         />
         <div class="gallery-overlay">
           <i class="bi bi-zoom-in"></i>

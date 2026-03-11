@@ -1,7 +1,7 @@
 from django import forms
 from news.models import News
 from gallery.models import Gallery
-from home.models import Hero, Agenda, Visi, Misi
+from home.models import Hero, Agenda, Visi, Contact
 
 class HeroForm(forms.ModelForm):
     class Meta:
@@ -104,3 +104,22 @@ class GalleryForm(forms.ModelForm):
         if len(title) < 10:
             raise forms.ValidationError("Judul terlalu pendek, minimal 10 karakter.")
         return title
+
+# CONTACT FORM
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = [
+            'email_school', 'telp_school', 'address_school', 
+            'latitude', 'longitude', 'instagram', 'youtube', 'tiktok'
+        ]
+        widgets = {
+            'address_school': forms.Textarea(attrs={'rows': 3, 'class': 'form-control'}),
+            'email_school': forms.EmailInput(attrs={'class': 'form-control'}),
+            'telp_school': forms.TextInput(attrs={'class': 'form-control'}),
+            'latitude': forms.NumberInput(attrs={'class': 'form-control'}),
+            'longitude': forms.NumberInput(attrs={'class': 'form-control'}),
+            'instagram': forms.URLInput(attrs={'class': 'form-control'}),
+            'youtube': forms.URLInput(attrs={'class': 'form-control'}),
+            'tiktok': forms.URLInput(attrs={'class': 'form-control'}),
+        }

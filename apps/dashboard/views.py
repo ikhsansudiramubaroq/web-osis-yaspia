@@ -4,8 +4,8 @@ from django.contrib import messages
 import os
 from news.models import News, Category
 from gallery.models import Gallery, Category as cat_gal
-from home.models import Hero, Visi, Misi, Agenda
-from .forms import ActivityForm, GalleryForm, HeroForm, VisiForm, AgendaForm
+from home.models import Hero, Visi, Misi, Agenda, Contact
+from .forms import ActivityForm, GalleryForm, HeroForm, VisiForm, AgendaForm, ContactForm
 
 # Create your views here.
 
@@ -168,6 +168,17 @@ def edit_activity(request, slug):
     return render(request, 'dashboard/activity/edit_activity.html', {'form': form, 'activity': activity})
 
 @login_required
+def detail_activity(request, slug):
+    # Mengambil data berdasarkan slug untuk preview
+    activity = get_object_or_404(News, slug=slug)
+    
+    context = {
+        'activity': activity,
+        'title': f"Preview: {activity.title}"
+    }
+    return render(request, 'dashboard/activity/detail_activity.html', context)
+
+@login_required
 def delete_activity(request, slug):
     activity = get_object_or_404(News, slug=slug)
     if request.method == "POST":
@@ -228,6 +239,17 @@ def edit_gallery(request, id):
     return render(request, 'dashboard/gallery/edit_gallery.html', {'form': form, 'gallery': gallery})
 
 @login_required
+def detail_gallery(request, id):
+    # Mengambil foto berdasarkan ID
+    photo = get_object_or_404(Gallery, id=id)
+    
+    context = {
+        'photo': photo,
+        'title': "Detail Foto Gallery"
+    }
+    return render(request, 'dashboard/gallery/detail_gallery.html', context)
+
+@login_required
 def delete_gallery(request, id):
     gallery = get_object_or_404(Gallery, id=id)
     if request.method == "POST":
@@ -239,3 +261,23 @@ def delete_gallery(request, id):
         messages.success(request, "Foto gallery berhasil dihapus!")
         return redirect('dashboard:list_gallery')
     return redirect('dashboard:list_gallery')
+
+# --- MANAGE CONTACT ---
+@login_required
+def manage_contact(request):
+    # Mengambil data pertama. Jika tabel kosong, Django akan buat data default
+    contact, created = Contact.objects.get_or_create(id=1)
+
+    if request.method == "POST":
+        form = ContactForm(request.POST, instance=contact)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Informasi Kontak berhasil diperbarui!")
+            return redirect('dashboard:manage_contact')
+    else:
+        form = ContactForm(instance=contact)
+
+    return render(request, 'dashboard/contact/manage_contact.html', {
+        'form': form,
+        'contact': contact
+    })

@@ -74,6 +74,7 @@
         <img
           src="{{ gallery.image_thumbnail.url }}"
           alt="{{ gallery.title }}"
+          loading="lazy"
         />
         <div class="gallery-overlay">
           <i class="bi bi-zoom-in"></i>
@@ -187,11 +188,6 @@
                   <i class="bi bi-calendar3"></i>
                   <span id="modalDate"></span>
                 </div>
-              </div>
-              <div class="modal-actions">
-                <button class="btn btn-outline-light btn-sm w-100">
-                  <i class="bi bi-share me-2"></i>Bagikan
-                </button>
               </div>
             </div>
           </div>

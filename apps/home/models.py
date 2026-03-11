@@ -63,12 +63,16 @@ class Misi(models.Model):
 class Contact(models.Model):
     email_school = models.EmailField()
     telp_school = models.CharField(max_length=20)
-    address_school = models.TextField
-    google_maps = models.TextField(help_text="Masukkan embed link dari Google Maps")
+    address_school = models.TextField() # Tambahkan ()
+    
+    # Koordinat untuk Leaflet JS
+    latitude = models.FloatField(help_text="Contoh: -6.4025", default=0)
+    longitude = models.FloatField(help_text="Contoh: 106.7942", default=0)
     
     # social media
-    instagram = models.URLField(blank=True,null=True)
-    yotube = models.URLField(blank=True, null=True)
-    
+    instagram = models.URLField(blank=True, null=True)
+    youtube = models.URLField(blank=True, null=True) # Perbaikan typo 'yotube'
+    tiktok = models.URLField(blank=True, null=True)
+
     def __str__(self):
-        return "Kontak Sekolah"
+        return "Pengaturan Kontak & Lokasi Sekolah"

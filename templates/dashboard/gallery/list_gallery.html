@@ -44,7 +44,7 @@
 											</td>
 											<td class="d-none d-xl-table-cell">
 												<a href="{% url 'dashboard:edit_gallery' gal.id %}" class="btn btn-primary"><i class="align-middle" data-feather="edit"></i></a>  |
-												<button class="btn btn-success"><i class="align-middle" data-feather="eye"></i></button>  |
+												<a href="{% url 'dashboard:detail_gallery' gal.id %}" class="btn btn-success"><i class="align-middle" data-feather="eye"></i></a>  |
 												<form action="{% url 'dashboard:delete_gallery' gal.id %}" method="POST" style="display:inline;" onsubmit="return confirm('Yakin ingin menghapus data ini?');">
 													{% csrf_token %}
 													<button type="submit" class="btn btn-danger">

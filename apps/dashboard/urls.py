@@ -21,11 +21,17 @@ urlpatterns = [
     path('list-activity/', list_activity, name='list_activity'), # Path daftar activity
     path('add-activity/', add_activity, name='add_activity'), # Path tambah activity
     path('update-activity/<slug:slug>/', edit_activity, name='edit_activity'), # Path edit activity
+    path('news/detail/<slug:slug>/', detail_activity, name='detail_activity'), #path detail news
     path('activity/delete/<slug:slug>/', delete_activity, name='delete_activity'), # delete activity
     
     # gallery
     path('list-gallery/', list_gallery, name='list_gallery'), # Path daftar gallery
     path('add-gallery/', add_gallery, name='add_gallery'), # Path daftar gallery
     path('update-gallery/<int:id>/', edit_gallery, name='edit_gallery'), # Path edit gallery
+    path('gallery/detail/<int:id>/', detail_gallery, name='detail_gallery'), #path detail gallery
     path('gallery/delete/<int:id>/', delete_gallery, name='delete_gallery'), #delete galery
+    
+    # CONTACT
+    path('manage-contact/', manage_contact, name='manage_contact'), #delete galery
+    
 ]

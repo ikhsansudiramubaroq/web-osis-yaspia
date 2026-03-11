@@ -55,8 +55,9 @@
         <div class="featured-image mb-5" data-aos="fade-up">
           <img
             src="{{ news_detail.image.url }}"
-            alt="Pelantikan OSIS"
+            alt="{{ news.title }}"
             class="img-fluid rounded-4 shadow-lg"
+            loading="lazy"
           />
           <p class="image-caption text-center mt-3">{{ news_list.title }}</p>
         </div>

@@ -6,7 +6,9 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 def news_list(request) :
-    news_list = News.objects.all() #tampilkan query data
+    news_list = News.objects.filter(status='publish') \
+                        .select_related('category', 'author') \
+                        .order_by('-created_at')
     paginator = Paginator(news_list,per_page = 6 ) # Class Paginator berisi param(query data, brp data yg tampil)
     page_number = request.GET.get('page') #ambil 'page' sesuai dengan klik halaman 
     page_obj = paginator.get_page(page_number) #get_page ambil number page ke berapa
@@ -23,7 +25,8 @@ def detail_news(request, slug_news):
             'title', 'content', 'image', 'created_at', 
             'category__name', 'author__first_name'
         ),
-        slug=slug_news
+        slug=slug_news,
+        status = 'publish'
     )
 
     # 2. Siapkan context
