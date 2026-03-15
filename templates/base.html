@@ -9,7 +9,17 @@
       name="description"
       content="Website Resmi OSIS SMK - Informasi Kegiatan, Berita, dan Galeri"
     />
-    <title>OSIS SMK - Beranda</title>
+    <title>{% block title %}OSIS SMK - Beranda{% endblock title %}</title>
+
+    {% block meta %}
+    <meta name="description" content="Website Resmi OSIS SMK Yaspia Jakarta. Temukan informasi kegiatan, agenda terbaru, dan galeri siswa di sini." />
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="OSIS SMK Yaspia - Beranda" />
+    <meta property="og:description" content="Website Resmi OSIS SMK Yaspia - Informasi Kegiatan, Berita, dan Galeri" />
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'dashboard/img/logo-yaspia.jpeg' %}" />
+    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+    {% endblock meta %}
 
     <!-- Bootstrap 5.3 CSS -->
     <link

@@ -1,4 +1,18 @@
-{% include "base.html" %} {% block 'content' %}
+{% extends "base.html" %} 
+{% block title %} Kegiatan OSIS - {{ news_detail.title }}{% endblock title %}
+
+{% comment %} meta seo {% endcomment %}
+{% block meta %}
+<meta name="description" content="{{ news_detail.content|striptags|truncatechars:150 }}" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="{{ news_detail.title }}" />
+<meta property="og:description" content="{{ news_detail.content|striptags|truncatechars:150 }}" />
+<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ news_detail.image.url }}" />
+<meta property="og:url" content="{{ request.build_absolute_uri }}" />
+{% endblock meta %}
+
+{% block 'content' %}
 <!-- Navbar Glassmorphism -->
 {% include "partials/navbar.html" %}
 
@@ -31,14 +45,6 @@
           <div class="meta-item">
             <i class="bi bi-person"></i>
             <span>{{ news_detail.author.first_name }} </span>
-          </div>
-          <div class="meta-item">
-            <i class="bi bi-eye"></i>
-            <span>1,234 views</span>
-          </div>
-          <div class="meta-item">
-            <i class="bi bi-clock"></i>
-            <span>5 min read</span>
           </div>
         </div>
       </div>
@@ -80,33 +86,15 @@
 
           <!-- Social Share -->
           <div class="social-share mt-5">
-            <h5>Bagikan Berita:</h5>
+            <h5>Bagikan Kegiatan:</h5>
             <div class="share-buttons">
-              <a href="#" class="share-btn facebook">
-                <i class="bi bi-facebook"></i>
-              </a>
-              <a href="#" class="share-btn twitter">
-                <i class="bi bi-twitter"></i>
-              </a>
-              <a href="#" class="share-btn whatsapp">
+              <a href="https://api.whatsapp.com/send?text={{ news_detail.title }} - {{ request.build_absolute_uri }}" target="_blank" class="share-btn whatsapp">
                 <i class="bi bi-whatsapp"></i>
               </a>
-              <a href="#" class="share-btn linkedin">
-                <i class="bi bi-linkedin"></i>
-              </a>
-              <a href="#" class="share-btn telegram">
-                <i class="bi bi-telegram"></i>
+              <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" class="share-btn facebook">
+                <i class="bi bi-facebook"></i>
               </a>
             </div>
-          </div>
-
-          <!-- Tags -->
-          <div class="article-tags mt-4">
-            <h5>Tags:</h5>
-            <a href="#" class="tag-badge">OSIS</a>
-            <a href="#" class="tag-badge">Pelantikan</a>
-            <a href="#" class="tag-badge">Event</a>
-            <a href="#" class="tag-badge">Sekolah</a>
           </div>
         </div>
       </div>
