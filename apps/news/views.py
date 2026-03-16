@@ -1,10 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from .models import News
 from django.core.paginator import Paginator
+from django.views.decorators.cache import cache_page
 
 # Create your views here.
 
 # Create your views here.
+@cache_page(60 * 15)
 def news_list(request) :
     news_list = News.objects.filter(status='publish') \
                         .select_related('category', 'author') \

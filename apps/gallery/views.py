@@ -1,8 +1,10 @@
 from django.shortcuts import render
-from .models import Gallery,Category
+from .models import Gallery
 from django.core.paginator import Paginator
+from django.views.decorators.cache import cache_page
 
 # Create your views here.
+@cache_page(60 * 15)
 def gallery_list(request):
     list_gallery = Gallery.objects.filter(status='publish') \
                                 .select_related('category') \

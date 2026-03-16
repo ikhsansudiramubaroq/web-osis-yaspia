@@ -59,6 +59,20 @@ TEMPLATES = [
     },
 ]
 
+# REDIS CACHE DJANGO CACHING
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "rediss://default:gQAAAAAAAR-fAAIncDFiZmJhYWRjYThjOTU0NTU4OTkwNDEyMGE1MTgwMGUzOXAxNzM2MzE@still-minnow-73631.upstash.io:6379",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "CONNECTION_POOL_KWARGS": {
+                "ssl_cert_reqs": None # Penting untuk koneksi aman Upstash
+            }
+        }
+    }
+}
+
 WSGI_APPLICATION = 'osis_project.wsgi.application'
 
 

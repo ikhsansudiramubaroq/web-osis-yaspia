@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-glass fixed-top" id="mainNavbar">
   <div class="container">
-    <a class="navbar-brand fw-bold" href="{% url 'home:index' %} ">
+    <a class="navbar-brand fw-bold" href="{% url 'home:index' %}">
       <i class="bi bi-mortarboard-fill me-2"></i>OSIS SMK
     </a>
     <button
@@ -13,18 +13,23 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
+        
         <li class="nav-item">
-          <a class="nav-link active" href="{% url 'home:index' %}">Beranda</a>
+          <a class="nav-link {% if request.resolver_match.view_name == 'home:index' %}active{% endif %}" href="{% url 'home:index' %}">Beranda</a>
         </li>
+        
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'news:index' %}">Kegiatan</a>
+          <a class="nav-link {% if request.resolver_match.view_name == 'news:index' %}active{% endif %}" href="{% url 'news:index' %}">Kegiatan</a>
         </li>
+        
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'gallery:index' %}">Galeri</a>
+          <a class="nav-link {% if request.resolver_match.view_name == 'gallery:index' %}active{% endif %}" href="{% url 'gallery:index' %}">Galeri</a>
         </li>
+        
         <li class="nav-item">
-          <a class="nav-link" href="#kontak">Kontak</a>
+          <a class="nav-link" href="{% if request.resolver_match.view_name != 'home:index' %}{% url 'home:index' %}{% endif %}#kontak">Kontak</a>
         </li>
+
       </ul>
     </div>
   </div>

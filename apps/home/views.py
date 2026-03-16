@@ -5,10 +5,10 @@ from news.models import News
 
 # Create your views here.
 def home_index(request):
-    gallery = Gallery.objects.all()[:4]
-    news = News.objects.all()[:3]
+    gallery = Gallery.objects.filter(status='publish')[:4]
+    news = News.objects.filter(status ='publish')[:3]
     hero = Hero.objects.all()
-    agenda = Agenda.objects.all()
+    agenda = Agenda.objects.filter(status_agenda = 'publish')
     visi = Visi.objects.first() # Mengambil data pertama/satu-satunya
     misi = Misi.objects.all()
     

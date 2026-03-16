@@ -11,23 +11,31 @@ from .forms import ActivityForm, GalleryForm, HeroForm, VisiForm, AgendaForm, Co
 
 @login_required # Hanya user login yang bisa akses dashboard
 def dashboard_index(request):
-    # Untuk dashboard_index, sebaiknya kirimkan statistik ringkas
+    total_news = News.objects.filter(status = 'publish').count()
+    total_gallery = Gallery.objects.filter(status = 'publish').count()
+    total_agenda = Agenda.objects.filter(status_agenda = 'publish').count()
+    
+    #ambil data tunggal
+    visi = Visi.objects.first()
+    misi_list = Misi.objects.all()
     context = {
-        'total_news': News.objects.count(),
-        'total_gallery': Gallery.objects.count(),
+        'total_news': total_news,
+        'total_gallery': total_gallery,
+        'total_agenda': total_agenda,
+        'visi' : visi,
+        'misi_list' : misi_list,
     }
     return render(request, 'dashboard/index.html', context)
 
 # --- MANAGE HOMEPAGE ---
 @login_required # Hanya user login yang bisa akses dashboard
 def manage_homepage(request):
-    
     hero_list = Hero.objects.all().order_by('-created_at')
+    
     #ambil data tunggal
     visi = Visi.objects.first()
-    misi_list = Misi.objects.all()
-    
     #data agenda untuk crud
+    misi_list = Misi.objects.all()
     list_agenda = Agenda.objects.all().order_by('date_agenda')
     
     context = {

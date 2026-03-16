@@ -10,33 +10,34 @@
           Pages
         </li>
 
-        <li class="sidebar-item active">
+        <li class="sidebar-item {% if request.resolver_match.url_name == 'dashboard_index' %}active{% endif %}">
           <a class="sidebar-link" href="{% url 'dashboard:dashboard_index' %}">
             <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
           </a>
         </li>
 
-        <li class="sidebar-item">
-          <a class="sidebar-link" href="{% url 'dashboard:manage_homepage' %} ">
+        <li class="sidebar-item {% if request.resolver_match.url_name == 'manage_homepage' %}active{% endif %}">
+          <a class="sidebar-link" href="{% url 'dashboard:manage_homepage' %}">
             <i class="align-middle" data-feather="tag"></i> <span class="align-middle">Manage HomePage</span>
           </a>
         </li>
 
         <li class="sidebar-header">Content</li>
-        <li class="sidebar-item">
-          <a class="sidebar-link" href="{% url 'dashboard:list_activity' %} ">
+        
+        <li class="sidebar-item {% if request.resolver_match.url_name == 'list_activity' %}active{% endif %}">
+          <a class="sidebar-link" href="{% url 'dashboard:list_activity' %}">
             <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Manage Activity</span>
           </a>
         </li>
 
-        <li class="sidebar-item">
+        <li class="sidebar-item {% if request.resolver_match.url_name == 'list_gallery' %}active{% endif %}">
           <a class="sidebar-link" href="{% url 'dashboard:list_gallery' %}">
             <i class="align-middle" data-feather="film"></i> <span class="align-middle">Manage Gallery</span>
           </a>
         </li>
 
-        <li class="sidebar-item">
-          <a class="sidebar-link" href="{% url 'dashboard:manage_contact' %} ">
+        <li class="sidebar-item {% if request.resolver_match.url_name == 'manage_contact' %}active{% endif %}">
+          <a class="sidebar-link" href="{% url 'dashboard:manage_contact' %}">
             <i class="align-middle" data-feather="phone"></i> <span class="align-middle">Manage Contact</span>
           </a>
         </li>

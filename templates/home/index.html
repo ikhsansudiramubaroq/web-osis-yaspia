@@ -1,8 +1,12 @@
-{% extends "base.html" %} {% block 'content' %}
+{% extends "base.html" %} 
+{% load cache %}
+
+{% block 'content' %}
 <!-- Navbar Glassmorphism -->
 {% include "partials/navbar.html" %}
 
 <!-- Hero Slider Section -->
+{% cache 3600 hero_slider %}
 <section class="hero-slider">
   <div class="swiper heroSwiper">
     <div class="swiper-wrapper">
@@ -30,8 +34,10 @@
     <div class="swiper-button-prev"></div>
   </div>
 </section>
+{% endcache %}
 
 <!-- Upcoming Events Section -->
+{% cache 3600 agenda %}
 <section class="py-5 bg-light" id="agenda">
   <div class="container">
     <div class="text-center mb-5" data-aos="fade-up">
@@ -72,8 +78,10 @@
     </div>
   </div>
 </section>
+{% endcache %}
 
 <!-- Visi & Misi Section -->
+{% cache 3600 visi_misi %}
 <section class="py-5" id="tentang">
   <div class="container">
     <div class="row align-items-center g-5">
@@ -126,7 +134,9 @@
     </div>
   </div>
 </section>
+{% endcache %}
 
+{% cache 900 news_home %}
 <!-- Latest News Section -->
 <section class="py-5 bg-light">
   <div class="container">
@@ -170,7 +180,9 @@
     </div>
   </div>
 </section>
+{% endcache %}
 
+{% cache 900 gallery_home %}
 <!-- Gallery Preview Section -->
 <section class="py-5">
   <div class="container">
@@ -210,6 +222,7 @@
     </div>
   </div>
 </section>
+{% endcache %}
 
 <!-- Gallery Modal -->
 <div
@@ -258,14 +271,6 @@
                   <span id="modalDate"></span>
                 </div>
               </div>
-              <div class="modal-actions">
-                <button class="btn btn-primary btn-sm w-100 mb-2">
-                  <i class="bi bi-download me-2"></i>Download
-                </button>
-                <button class="btn btn-outline-light btn-sm w-100">
-                  <i class="bi bi-share me-2"></i>Bagikan
-                </button>
-              </div>
             </div>
           </div>
         </div>
@@ -275,7 +280,7 @@
 </div>
 
 <!-- Footer -->
-
+{% cache 900 home_gallery_script %}
 <script>
   const homeGalleryData = [
       {% for g in home_gallery %}
@@ -289,5 +294,7 @@
   ];
   console.log(homeGalleryData); // Cek di inspect element browser, muncul gak datanya?
 </script>
+{% endcache %}
 
-{% include "partials/footer.html" %} {% endblock 'content' %}
+{% include "partials/footer.html" %} 
+{% endblock 'content' %}

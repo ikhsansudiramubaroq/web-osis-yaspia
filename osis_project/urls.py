@@ -10,7 +10,7 @@ urlpatterns = [
     path("ckeditor5/", include('django_ckeditor_5.urls')),
     
     path('', include('home.urls')), # Path kosong ini untuk beranda
-    path('accounts/', include('accounts.urls')), # Path login ini untuk login
+    path('admin-osis/', include('accounts.urls')), # Path login ini untuk login
     path('dashboard/', include('dashboard.urls')), # Path login ini untuk login
     path('gallery/', include('gallery.urls')), # Path gallery ini untuk halaman galery
     path('news/', include('news.urls')), # Path news untuk halaman news/berita
