@@ -2,8 +2,10 @@ from django.shortcuts import render
 from .models import Hero,Agenda,Visi,Misi,Contact
 from gallery.models import Gallery
 from news.models import News
+from django.views.decorators.cache import cache_page
 
 # Create your views here.
+@cache_page(60 * 15)
 def home_index(request):
     gallery = Gallery.objects.filter(status='publish')[:4]
     news = News.objects.filter(status ='publish')[:3]
