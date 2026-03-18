@@ -2,25 +2,27 @@ from django.shortcuts import render
 from .models import Hero,Agenda,Visi,Misi,Contact
 from gallery.models import Gallery
 from news.models import News
-from django.views.decorators.cache import cache_page
+from django.core.cache import cache
 
 # Create your views here.
-@cache_page(60 * 15)
+
+# object caching agar proses render template base.html dan footer tetap di render tanpa gangguan caching
 def home_index(request):
-    gallery = Gallery.objects.filter(status='publish')[:4]
-    news = News.objects.filter(status ='publish')[:3]
-    hero = Hero.objects.all()
-    agenda = Agenda.objects.filter(status_agenda = 'publish')
-    visi = Visi.objects.first() # Mengambil data pertama/satu-satunya
-    misi = Misi.objects.all()
+    # simpan semua data home dalam satu kunci besar agar irit query
+    cache_key = 'home_data_all'
+    context = cache.get(cache_key)
     
-    context = {
-        'agenda' : agenda,
-        'visi' : visi,
-        'misi' : misi,
-        'hero': hero,
-        'home_gallery' : gallery,
-        'home_news' : news,
-    }
+    if not context:
+        context = {
+            'home_gallery' : Gallery.objects.filter(status='publish').order_by('-created_at')[:4],
+            'home_news' : News.objects.filter(status ='publish')[:3],
+            'hero' : Hero.objects.all().order_by('-created_at'),
+            'agenda' : Agenda.objects.filter(status_agenda = 'publish').order_by('-date_agenda'),
+            'visi' : Visi.objects.first(), # Mengambil data pertama/satu-satunya
+            'misi' : Misi.objects.all(),
+        }
+        
+        # Simpan ke Upstash
+        cache.set(cache_key, context, 60 * 15)
     
     return render(request, 'home/index.html', context)

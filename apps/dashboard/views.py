@@ -36,7 +36,7 @@ def manage_homepage(request):
     visi = Visi.objects.first()
     #data agenda untuk crud
     misi_list = Misi.objects.all()
-    list_agenda = Agenda.objects.all().order_by('date_agenda')
+    list_agenda = Agenda.objects.all().order_by('-date_agenda')
     
     context = {
         'hero_list': hero_list,

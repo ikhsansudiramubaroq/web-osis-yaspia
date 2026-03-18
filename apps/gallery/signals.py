@@ -4,7 +4,9 @@ from django.core.cache import cache
 from .models import Gallery
 
 @receiver([post_save, post_delete], sender=Gallery)
-def hapus_cache_gallery(sender, instance, **kwargs):
-    # Gunakan clear() dulu supaya PASTI berhasil untuk View Cache & Object Cache
-    cache.clear()
+def hapus_cache_gallery(sender, instance,**kwargs):
+    # hapus cache khusus gallery saja
+    cache.delete_pattern('gallery_data_page_*')
+    # Hapus juga cache data home yang mengandung gallery
+    cache.delete('home_data_all')
     print(f"🧹 SIGNAL: Cache Bersih! Perubahan pada foto: {instance.title}")
