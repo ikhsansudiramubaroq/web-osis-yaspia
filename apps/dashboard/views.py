@@ -49,6 +49,7 @@ def manage_homepage(request):
     return render(request, 'dashboard/homepage/homepage.html', context)
 
 # --- EDIT HERO ---
+@login_required
 def edit_hero(request, id):
     hero = get_object_or_404(Hero, id=id)
     if request.method == "POST":
@@ -59,12 +60,14 @@ def edit_hero(request, id):
                 if os.path.isfile(hero.image_hero.path):
                     os.remove(hero.image_hero.path)
             form.save()
+            messages.success(request, "Foto Berhasil diubah")
             return redirect('dashboard:manage_homepage')
     else:
         form = HeroForm(instance=hero)
     return render(request, 'dashboard/homepage/edit_hero.html', {'form': form, 'hero': hero})
 
 # --- EDIT VISI & MISI ---
+@login_required
 def edit_visi_misi(request):
    # Ambil atau buat data Visi (ID=1)
     visi, created = Visi.objects.get_or_create(id=1)
@@ -98,6 +101,7 @@ def edit_visi_misi(request):
     return render(request, 'dashboard/homepage/edit_visi.html', context)
 
 # Fungsi tambahan untuk hapus misi lewat ID
+@login_required
 def delete_misi(request, id):
     misi = get_object_or_404(Misi, id=id)
     misi.delete()
@@ -105,25 +109,31 @@ def delete_misi(request, id):
     return redirect('dashboard:edit_visi')
 
 # --- CRUD AGENDA ---
+@login_required
 def add_agenda(request):
     form = AgendaForm(request.POST or None)
     if form.is_valid():
         form.save()
+        messages.success(request, "Agenda berhasil ditambahkan!")
         return redirect('dashboard:manage_homepage')
     return render(request, 'dashboard/homepage/add_agenda.html', {'form': form})
 
+@login_required
 def edit_agenda(request, id):
     agenda = get_object_or_404(Agenda, id=id)
     form = AgendaForm(request.POST or None, instance=agenda)
     if form.is_valid():
         form.save()
+        messages.success(request, "Agenda berhasil diubah!")
         return redirect('dashboard:manage_homepage')
     return render(request, 'dashboard/homepage/edit_agenda.html', {'form': form})
 
+@login_required
 def delete_agenda(request, id):
     agenda = get_object_or_404(Agenda, id=id)
     if request.method == "POST":
         agenda.delete()
+        messages.success(request, "Agenda berhasil dihapus!")
     return redirect('dashboard:manage_homepage')
 
 # --- ACTIVITY SECTION ---
@@ -197,7 +207,6 @@ def delete_activity(request, slug):
         
         activity.delete()
         messages.success(request, "Kegiatan berhasil dihapus!")
-        return redirect('dashboard:list_activity')
     return redirect('dashboard:list_activity')
 
 # -- GALLERY SECTION --
@@ -267,7 +276,6 @@ def delete_gallery(request, id):
         
         gallery.delete()
         messages.success(request, "Foto gallery berhasil dihapus!")
-        return redirect('dashboard:list_gallery')
     return redirect('dashboard:list_gallery')
 
 # --- MANAGE CONTACT ---

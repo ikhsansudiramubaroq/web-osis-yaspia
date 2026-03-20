@@ -58,34 +58,47 @@
     {% block 'content' %}{% endblock 'content' %}
     
     <!-- Bootstrap JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <script>
-        // Nyuruh JS nunggu sampai seluruh halaman HTML selesai di-load
-        document.addEventListener("DOMContentLoaded", function() {
-            
-            // Cek dulu, apakah div id="map" benar-benar ada di halaman ini?
-            var mapElement = document.getElementById('map');
-            
-            // Kalau elemennya KETEMU, baru deh kita bangun petanya
-            if (mapElement !== null) {
-                var lat = {{ contact.latitude|default:0 }};
-                var lon = {{ contact.longitude|default:0 }};
-                
+    document.addEventListener("DOMContentLoaded", function() {
+        var mapElement = document.getElementById('map');
+        
+        if (mapElement !== null) {
+            // SOLUSI: Pakai kutip dan filter safe + floatformat agar angka selalu pakai titik (.)
+            var lat = parseFloat("{{ contact.latitude|default:'0'|safe }}".replace(',', '.'));
+            var lon = parseFloat("{{ contact.longitude|default:'0'|safe }}".replace(',', '.'));
+
+            console.log("Koordinat Terdeteksi:", lat, lon); // Cek di console F12
+
+            if (lat !== 0 && lon !== 0) {
                 var map = L.map('map').setView([lat, lon], 15);
 
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     attribution: '© OpenStreetMap'
                 }).addTo(map);
 
-                L.marker([lat, lon]).addTo(map)
-                    .bindPopup('SMK Yaspia Bogor')
+                var myIcon = L.icon({
+                    // GUNAKAN TAG STATIC AGAR PATH-NYA BENAR DI MODE PRODUCTION
+                    iconUrl: "{% static 'dashboard/img/logo-yaspia.jpeg' %}", 
+                    iconSize: [50, 50],
+                    iconAnchor: [25, 50],
+                    popupAnchor: [0, -45],
+                    className: 'rounded-circle shadow-sm border border-white'
+                });
+
+                L.marker([lat, lon], { icon: myIcon }).addTo(map)
+                    .bindPopup('<b>SMK Yaspia Jakarta</b><br>Lokasi Sekolah Kami')
                     .openPopup();
+                
+                // Tambahkan ini agar peta merender ulang jika z-index bermasalah
+                setTimeout(function(){ map.invalidateSize()}, 500);
             }
-        });
-    </script>
+        }
+    });
+</script>
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>

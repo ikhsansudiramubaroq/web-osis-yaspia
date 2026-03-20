@@ -16,7 +16,12 @@
             </a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#"><i class="align-middle" data-feather="log-out"></i> Log out</a>
+								<a class="dropdown-item" href="javascript:void(0)" onclick="confirmLogout()">
+									<i class="align-middle" data-feather="log-out"></i> <span class="align-middle">Logout</span>
+								</a>
+								<form id="logout-form" action="{% url 'accounts:logout' %}" method="POST" style="display: none;">
+									{% csrf_token %}
+								</form>
 							</div>
 						</li>
 					</ul>

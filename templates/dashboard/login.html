@@ -60,6 +60,33 @@
 	</main>
 
 	<script src="{% static 'dashboard/js/app.js' %}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			// 1. Cek jika ada error dari form login Django
+			{% if form.errors %}
+				Swal.fire({
+					icon: 'error',
+					title: 'Login Gagal!',
+					text: 'Username atau Password salah. Silakan coba lagi!',
+					confirmButtonColor: '#3b7ddd',
+				});
+			{% endif %}
+
+			// 2. Cek jika ada pesan sukses (misal setelah logout)
+			{% if messages %}
+				{% for message in messages %}
+					Swal.fire({
+						icon: 'success',
+						title: 'Info',
+						text: '{{ message }}',
+						timer: 3000
+					});
+				{% endfor %}
+			{% endif %}
+		});
+	</script>
 
 </body>
 

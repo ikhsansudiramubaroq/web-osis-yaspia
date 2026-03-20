@@ -169,7 +169,7 @@
               <span><i class="bi bi-person me-1"></i>{{ request.user }} </span>
             </div>
             <h4 class="news-title">{{ news.title|truncatechars:30 }}</h4>
-            <a href="detail-berita.html?id=1" class="btn-read-more">
+            <a href="{% url 'news:detail_news' news.slug %} " class="btn-read-more">
               Baca Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
             </a>
           </div>
@@ -186,7 +186,7 @@
 <section class="py-5">
   <div class="container">
     <div class="text-center mb-5" data-aos="fade-up">
-      <h2 class="section-title">Galeri Foto</h2>
+      <h2 class="section-title">Galeri Foto OSIS SMK YASPIA</h2>
       <p class="text-muted">
         Dokumentasi kegiatan dan momen berharga OSIS SMK Yaspia
       </p>
@@ -234,7 +234,7 @@
   <div class="modal-dialog modal-dialog-centered modal-xl">
     <div class="modal-content gallery-modal-content">
       <div class="modal-header border-0">
-        <h5 class="modal-title" id="galleryModalLabel">Galeri Foto OSIS</h5>
+        <h5 class="modal-title" id="galleryModalLabel">Galeri Foto OSIS SMK YASPIA</h5>
         <button
           type="button"
           class="btn-close btn-close-white"
@@ -262,8 +262,8 @@
           </div>
           <div class="col-lg-3">
             <div class="modal-info">
-              <h4 id="modalTitle"></h4>
-              <p id="modalDescription"></p>
+              <h4 id="modalTitle" class="text-break fw-bold mb-3"></h4>
+              <p id="modalDescription" class="text-break"></p>
               <div class="modal-meta">
                 <div class="meta-item">
                   <i class="bi bi-calendar3"></i>

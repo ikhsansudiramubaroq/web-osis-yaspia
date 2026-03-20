@@ -10,14 +10,8 @@
       <div class="col-lg-8" data-aos="fade-right">
         <h1 class="page-title">Kegiatan & Informasi</h1>
         <p class="page-subtitle">
-          Update terbaru seputar kegiatan dan prestasi OSIS SMK
+          Update terbaru seputar kegiatan dan prestasi OSIS SMK Yaspia
         </p>
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Berita</li>
-          </ol>
-        </nav>
       </div>
     </div>
   </div>
@@ -29,10 +23,17 @@
     <div class="row align-items-center">
       <div class="col-lg-6 mb-3 mb-lg-0">
         <div class="filter-buttons">
-          <button class="filter-btn active" data-filter="all">Semua</button>
-          <button class="filter-btn" data-filter="event">Event</button>
-          <button class="filter-btn" data-filter="prestasi">Prestasi</button>
-          <button class="filter-btn" data-filter="sosial">Sosial</button>
+          <a href="{% url 'news:index' %}" 
+            class="filter-btn {% if not current_category_slug %}active{% endif %}">
+            Semua
+          </a>
+
+          {% for cat in categories %}
+          <a href="?category={{ cat.slug }}" 
+            class="filter-btn {% if current_category_slug == cat.slug %}active{% endif %}">
+            {{ cat.name }}
+          </a>
+          {% endfor %}
         </div>
       </div>
       <div class="col-lg-6">
@@ -60,7 +61,6 @@
         class="col-lg-4 col-md-6 news-item"
         data-aos="fade-up"
         data-aos-delay="100"
-        data-category="event"
       >
         <div class="news-card">
           <div class="news-image">

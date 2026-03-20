@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="d-flex align-items-center justify-content-center vh-100 bg-light">
+    <div class="text-center p-5 shadow-sm bg-white rounded-4" style="max-width: 500px;">
+        <h1 class="display-1 fw-bold text-danger">500</h1>
+        <h3 class="fw-bold">Ups, Server Sedang Lelah...</h3>
+        <p class="text-muted">Terjadi kesalahan internal pada sistem. Tenang, tim IT OSIS Yaspia sedang berusaha memperbaikinya!</p>
+        <div class="mt-4">
+            <a href="javascript:location.reload();" class="btn btn-outline-danger px-4 py-2 rounded-pill">
+                <i class="bi bi-arrow-clockwise me-2"></i>Coba Segarkan Halaman
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

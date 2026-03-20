@@ -20,9 +20,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     # apps
-    'home',
-    'news',
-    'gallery',
+    'home.apps.HomeConfig',
+    'news.apps.NewsConfig',
+    'gallery.apps.GalleryConfig',
     'accounts',
     'dashboard',
     'django_ckeditor_5',
@@ -31,6 +31,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -66,6 +67,7 @@ CACHES = {
         "LOCATION": "rediss://default:gQAAAAAAAR-fAAIncDFiZmJhYWRjYThjOTU0NTU4OTkwNDEyMGE1MTgwMGUzOXAxNzM2MzE@still-minnow-73631.upstash.io:6379",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "IGNORE_EXCEPTIONS": True,
             "CONNECTION_POOL_KWARGS": {
                 "ssl_cert_reqs": None # Penting untuk koneksi aman Upstash
             }
@@ -92,9 +94,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'id-id'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Jakarta'
 
 USE_I18N = True
 
@@ -130,3 +132,6 @@ LOGIN_REDIRECT_URL = 'dashboard:dashboard_index'
 LOGOUT_REDIRECT_URL = 'accounts:login'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# whitenoise 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

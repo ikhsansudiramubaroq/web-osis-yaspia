@@ -31,12 +31,6 @@
         <p class="page-subtitle">
           Dokumentasi kegiatan dan momen berharga OSIS SMK
         </p>
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Galeri</li>
-          </ol>
-        </nav>
       </div>
     </div>
   </div>
@@ -47,12 +41,18 @@
   <div class="container">
     <div class="text-center">
       <div class="filter-buttons">
-        <button class="filter-btn active" data-filter="all">Semua Foto</button>
-        <button class="filter-btn" data-filter="event">Event</button>
-        <button class="filter-btn" data-filter="prestasi">Prestasi</button>
-        <button class="filter-btn" data-filter="sosial">Sosial</button>
-        <button class="filter-btn" data-filter="kesenian">Kesenian</button>
-      </div>
+          <a href="{% url 'gallery:index' %}" 
+            class="filter-btn {% if not current_category_name %}active{% endif %}">
+            Semua
+          </a>
+
+          {% for cat in categories %}
+          <a href="?category={{ cat.name }}" 
+            class="filter-btn {% if current_category_name == cat.name %}active{% endif %}">
+            {{ cat.name }}
+          </a>
+          {% endfor %}
+        </div>
     </div>
   </div>
 </section>
@@ -153,7 +153,7 @@
   <div class="modal-dialog modal-dialog-centered modal-xl">
     <div class="modal-content gallery-modal-content">
       <div class="modal-header border-0">
-        <h5 class="modal-title" id="galleryModalLabel">Galeri Foto OSIS</h5>
+        <h5 class="modal-title" id="galleryModalLabel">Galeri Foto OSIS SMK YASPIA</h5>
         <button
           type="button"
           class="btn-close btn-close-white"
@@ -181,11 +181,11 @@
           </div>
           <div class="col-lg-3">
             <div class="modal-info">
-              <h4 id="modalTitle"></h4>
-              <p id="modalDescription"></p>
+              <h4 id="modalTitle" class="text-break fw-bold mb-3"></h4>
+              <p id="modalDescription" class="text-break"></p>
               <div class="modal-meta">
-                <div class="meta-item">
-                  <i class="bi bi-calendar3"></i>
+                <div class="meta-item d-flex align-items-center">
+                  <i class="bi bi-calendar3 me-2"></i>
                   <span id="modalDate"></span>
                 </div>
               </div>
