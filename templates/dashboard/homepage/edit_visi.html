@@ -15,11 +15,14 @@
                 <div class="card shadow-sm">
                     <div class="card-header"><h5 class="card-title mb-0">Update Visi Sekolah</h5></div>
                     <div class="card-body">
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <form action="" method="POST" enctype="multipart/form-data" novalidate>
                             {% csrf_token %}
                             <div class="mb-3">
                                 <label class="form-label fw-bold">Teks Visi</label>
                                 {{ form.teks_visi }}
+                                {% if form.teks_visi.errors %}
+                                    <div class="text-danger small mt-1">{{ form.teks_visi.errors.0 }}</div>
+                                {% endif %}
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
@@ -30,8 +33,14 @@
                                 <div class="col-md-8">
                                     <label class="form-label fw-bold">Gambar Visi</label>
                                     {{ form.image_visi }}
+                                    {% if form.image_visi.errors %}
+                                        <div class="text-danger small mt-1">{{ form.image_visi.errors.0 }}</div>
+                                    {% endif %}
                                     <label class="form-label fw-bold mt-2">Deskripsi Gambar</label>
                                     {{ form.description_image }}
+                                    {% if form.description_image.errors %}
+                                        <div class="text-danger small mt-1">{{ form.description_image.errors.0 }}</div>
+                                    {% endif %}
                                 </div>
                             </div>
                             <hr>
@@ -45,7 +54,7 @@
                 <div class="card shadow-sm">
                     <div class="card-header"><h5 class="card-title mb-0">Daftar Misi</h5></div>
                     <div class="card-body">
-                        <form action="" method="POST" class="mb-4">
+                        <form action="" method="POST" class="mb-4" novalidate>
                             {% csrf_token %}
                             <div class="input-group">
                                 <input type="text" name="misi_baru" class="form-control" placeholder="Tulis misi baru di sini..." required>

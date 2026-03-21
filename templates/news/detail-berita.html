@@ -53,7 +53,7 @@
             src="{{ news_detail.image.url }}"
             alt="{{ news.title }}"
             class="img-fluid rounded-4 shadow-lg"
-            loading="lazy"
+            fetchpriority="high"
           />
           <p class="image-caption text-center mt-3">{{ news_list.title }}</p>
         </div>
@@ -78,10 +78,10 @@
           <div class="social-share mt-5">
             <h5>Bagikan Kegiatan:</h5>
             <div class="share-buttons">
-              <a href="https://api.whatsapp.com/send?text={{ news_detail.title }} - {{ request.build_absolute_uri }}" target="_blank" class="share-btn whatsapp">
+              <a href="https://api.whatsapp.com/send?text={{ news_detail.title }} - {{ request.build_absolute_uri }}" target="_blank" class="share-btn whatsapp" aria-label="Bagikan ke WhatsApp">
                 <i class="bi bi-whatsapp"></i>
               </a>
-              <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" class="share-btn facebook">
+              <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" class="share-btn facebook" aria-label="Bagikan ke Facebook">
                 <i class="bi bi-facebook"></i>
               </a>
             </div>

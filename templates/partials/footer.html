@@ -3,7 +3,7 @@
     <div class="row g-4">
       <div class="col-lg-6">
         <h4 class="footer-title">Lokasi Kami</h4>
-        <div id="map" style="height: 300px; border-radius: 15px; z-index: 1;"></div>
+        <div id="map" style="height: 300px; border-radius: 15px; z-index: 1;" aria-label="Peta Lokasi" role="region"></div>
       </div>
 
       <div class="col-lg-6">
@@ -35,19 +35,19 @@
         <div class="social-links mt-4">
           <h5 class="mb-3">Media Sosial</h5>
           {% if contact.instagram %}
-          <a href="{{ contact.instagram }}" class="social-link" target="_blank">
+          <a href="{{ contact.instagram }}" class="social-link" target="_blank" aria-label="Instagram">
             <i class="bi bi-instagram"></i>
           </a>
           {% endif %}
           
           {% if contact.youtube %}
-          <a href="{{ contact.youtube }}" class="social-link" target="_blank">
+          <a href="{{ contact.youtube }}" class="social-link" target="_blank" aria-label="YouTube">
             <i class="bi bi-youtube"></i>
           </a>
           {% endif %}
 
           {% if contact.tiktok %}
-          <a href="{{ contact.tiktok }}" class="social-link" target="_blank">
+          <a href="{{ contact.tiktok }}" class="social-link" target="_blank" aria-label="TikTok">
             <i class="bi bi-tiktok"></i>
           </a>
           {% endif %}

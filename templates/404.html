@@ -1,9 +1,12 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} 
+{% block 'content' %} 
+{% include "partials/navbar.html" %}
+
 <section class="d-flex align-items-center justify-content-center vh-100 bg-light">
     <div class="text-center p-5 shadow-sm bg-white rounded-4" style="max-width: 500px;">
         <h1 class="display-1 fw-bold text-primary">404</h1>
         <h3 class="fw-bold">Waduh, Halamannya Hilang!</h3>
-        <p class="text-muted">Sepertinya Pak Guru atau pengunjung salah ketik alamat, atau konten ini sudah dipindahkan oleh Admin OSIS.</p>
+        <p class="text-muted">Sepertinya anda salah ketik alamat, atau konten ini sudah dipindahkan oleh Admin OSIS.</p>
         <div class="mt-4">
             <a href="/" class="btn btn-primary px-4 py-2 rounded-pill">
                 <i class="bi bi-house-door me-2"></i>Kembali ke Beranda
@@ -11,4 +14,5 @@
         </div>
     </div>
 </section>
-{% endblock %}
+
+{% endblock 'content' %}

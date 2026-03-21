@@ -19,43 +19,64 @@
                         <p class="text-muted small">Isi detail agenda sekolah atau kegiatan OSIS di bawah ini.</p>
                     </div>
                     <div class="card-body">
-                        <form action="" method="POST">
+                        <form action="" method="POST" novalidate>
                             {% csrf_token %}
                             
                             <div class="row">
                                 <div class="col-md-8 mb-3">
                                     <label class="form-label fw-bold">Judul Agenda</label>
                                     {{ form.title_agenda }}
+                                    {% if form.title_agenda.errors %}
+                                        <div class="text-danger small mt-1">{{ form.title_agenda.errors.0 }}</div>
+                                    {% endif %}
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label fw-bold">Kategori</label>
                                     {{ form.category_agenda }}
+                                    {% if form.category_agenda.errors %}
+                                        <div class="text-danger small mt-1">{{ form.category_agenda.errors.0 }}</div>
+                                    {% endif %}
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label fw-bold">Deskripsi Kegiatan</label>
                                 {{ form.description_agenda }}
+                                {% if form.description_agenda.errors %}
+                                    <div class="text-danger small mt-1">{{ form.description_agenda.errors.0 }}</div>
+                                {% endif %}
                             </div>
 
                             <div class="row">
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label fw-bold">Tanggal</label>
                                     {{ form.date_agenda }}
+                                    {% if form.date_agenda.errors %}
+                                        <div class="text-danger small mt-1">{{ form.date_agenda.errors.0 }}</div>
+                                    {% endif %}
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label fw-bold">Waktu</label>
                                     {{ form.time_agenda }}
+                                    {% if form.time_agenda.errors %}
+                                        <div class="text-danger small mt-1">{{ form.time_agenda.errors.0 }}</div>
+                                    {% endif %}
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label fw-bold">Lokasi</label>
                                     {{ form.location }}
+                                    {% if form.location.errors %}
+                                        <div class="text-danger small mt-1">{{ form.location.errors.0 }}</div>
+                                    {% endif %}
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label fw-bold">Status Publikasi</label>
                                 {{ form.status_agenda }}
+                                {% if form.status_agenda.errors %}
+                                    <div class="text-danger small mt-1">{{ form.status_agenda.errors.0 }}</div>
+                                {% endif %}
                             </div>
 
                             <div class="border-top pt-3 d-flex justify-content-end mt-4">

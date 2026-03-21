@@ -13,6 +13,12 @@ class HeroForm(forms.ModelForm):
             'image_hero': forms.FileInput(attrs={'class': 'form-control'}),
         }
 
+    def clean_image_hero(self):
+        image = self.cleaned_data.get('image_hero')
+        if not image and not self.instance.image_hero:
+            raise forms.ValidationError("Gambar wajib diunggah untuk Hero Slider!")
+        return image
+
 class VisiForm(forms.ModelForm):
     class Meta:
         model = Visi
@@ -22,6 +28,12 @@ class VisiForm(forms.ModelForm):
             'description_image': forms.TextInput(attrs={'class': 'form-control'}),
             'image_visi': forms.FileInput(attrs={'class': 'form-control'}),
         }
+
+    def clean_image_visi(self):
+        image = self.cleaned_data.get('image_visi')
+        if not image and not self.instance.image_visi:
+            raise forms.ValidationError("Gambar pendukung Visi wajib diunggah!")
+        return image
 
 class AgendaForm(forms.ModelForm):
     class Meta:
@@ -68,6 +80,12 @@ class ActivityForm(forms.ModelForm):
             raise forms.ValidationError("Judul terlalu pendek, minimal 10 karakter.")
         return title
 
+    def clean_image(self):
+        image = self.cleaned_data.get('image')
+        if not image and not self.instance.image:
+            raise forms.ValidationError("Gambar unggulan wajib diunggah!")
+        return image
+
 
 class GalleryForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
@@ -104,6 +122,12 @@ class GalleryForm(forms.ModelForm):
         if len(title) < 10:
             raise forms.ValidationError("Judul terlalu pendek, minimal 10 karakter.")
         return title
+
+    def clean_image(self):
+        image = self.cleaned_data.get('image')
+        if not image and not self.instance.image:
+            raise forms.ValidationError("Foto/File gambar wajib diunggah!")
+        return image
 
 # CONTACT FORM
 class ContactForm(forms.ModelForm):

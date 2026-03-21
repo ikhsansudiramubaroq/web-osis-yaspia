@@ -1,5 +1,14 @@
 {% extends "base.html" %} 
 
+{% block extra_css %}
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+<!-- Preload LCP Image -->
+{% if hero %}
+<link rel="preload" as="image" href="{{ hero.0.image_hero.url }}" />
+{% endif %}
+{% endblock extra_css %}
+
 {% block 'content' %}
 <!-- Navbar Glassmorphism -->
 {% include "partials/navbar.html" %}
@@ -297,3 +306,8 @@
 
 {% include "partials/footer.html" %} 
 {% endblock 'content' %}
+
+{% block extra_js %}
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" defer></script>
+{% endblock extra_js %}

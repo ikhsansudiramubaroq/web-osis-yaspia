@@ -13,21 +13,30 @@
                         <h6 class="card-subtitle text-muted">Data ini akan tampil di bagian Footer website.</h6>
                     </div>
                     <div class="card-body">
-                        <form method="POST">
+                        <form method="POST" novalidate>
                             {% csrf_token %}
                             <div class="row">
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label">Email Sekolah</label>
                                     {{ form.email_school }}
+                                    {% if form.email_school.errors %}
+                                        <div class="text-danger small mt-1">{{ form.email_school.errors.0 }}</div>
+                                    {% endif %}
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label">Telepon Sekolah</label>
                                     {{ form.telp_school }}
+                                    {% if form.telp_school.errors %}
+                                        <div class="text-danger small mt-1">{{ form.telp_school.errors.0 }}</div>
+                                    {% endif %}
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Alamat Lengkap</label>
                                 {{ form.address_school }}
+                                {% if form.address_school.errors %}
+                                    <div class="text-danger small mt-1">{{ form.address_school.errors.0 }}</div>
+                                {% endif %}
                             </div>
                             
                             <hr>
@@ -36,10 +45,16 @@
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label">Latitude</label>
                                     {{ form.latitude }}
+                                    {% if form.latitude.errors %}
+                                        <div class="text-danger small mt-1">{{ form.latitude.errors.0 }}</div>
+                                    {% endif %}
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label">Longitude</label>
                                     {{ form.longitude }}
+                                    {% if form.longitude.errors %}
+                                        <div class="text-danger small mt-1">{{ form.longitude.errors.0 }}</div>
+                                    {% endif %}
                                 </div>
                             </div>
 
@@ -48,14 +63,23 @@
                             <div class="mb-3">
                                 <label class="form-label">Instagram URL</label>
                                 {{ form.instagram }}
+                                {% if form.instagram.errors %}
+                                    <div class="text-danger small mt-1">{{ form.instagram.errors.0 }}</div>
+                                {% endif %}
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">YouTube URL</label>
                                 {{ form.youtube }}
+                                {% if form.youtube.errors %}
+                                    <div class="text-danger small mt-1">{{ form.youtube.errors.0 }}</div>
+                                {% endif %}
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">TikTok URL</label>
                                 {{ form.tiktok }}
+                                {% if form.tiktok.errors %}
+                                    <div class="text-danger small mt-1">{{ form.tiktok.errors.0 }}</div>
+                                {% endif %}
                             </div>
 
                             <button type="submit" class="btn btn-primary btn-lg">Simpan Perubahan</button>

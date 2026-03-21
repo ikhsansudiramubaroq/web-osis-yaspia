@@ -19,7 +19,7 @@
                         <p class="text-muted small">Ubah informasi di bawah untuk mengupdate slide nomor #{{ hero.id }} di halaman depan.</p>
                     </div>
                     <div class="card-body">
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <form action="" method="POST" enctype="multipart/form-data" novalidate>
                             {% csrf_token %}
                             
                             <div class="row">
@@ -43,7 +43,7 @@
                                         <label class="form-label fw-bold">{{ form.title_hero.label }}</label>
                                         {{ form.title_hero }}
                                         {% if form.title_hero.errors %}
-                                            <div class="text-danger small">{{ form.title_hero.errors }}</div>
+                                            <div class="text-danger small mt-1">{{ form.title_hero.errors.0 }}</div>
                                         {% endif %}
                                     </div>
 
@@ -51,7 +51,7 @@
                                         <label class="form-label fw-bold">{{ form.subtitle_hero.label }}</label>
                                         {{ form.subtitle_hero }}
                                         {% if form.subtitle_hero.errors %}
-                                            <div class="text-danger small">{{ form.subtitle_hero.errors }}</div>
+                                            <div class="text-danger small mt-1">{{ form.subtitle_hero.errors.0 }}</div>
                                         {% endif %}
                                     </div>
 
@@ -60,7 +60,7 @@
                                         {{ form.image_hero }}
                                         <small class="text-muted d-block mt-1">Sistem akan otomatis me-resize ke 1200x675. Format: JPEG/PNG.</small>
                                         {% if form.image_hero.errors %}
-                                            <div class="text-danger small">{{ form.image_hero.errors }}</div>
+                                            <div class="text-danger small mt-1">{{ form.image_hero.errors.0 }}</div>
                                         {% endif %}
                                     </div>
                                 </div>
