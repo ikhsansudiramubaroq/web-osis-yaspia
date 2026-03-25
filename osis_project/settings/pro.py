@@ -2,7 +2,7 @@ from .base import *
 from decouple import config # Pastikan ini ada kalau pakai .env
 
 DEBUG = False
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'domain-osis-kamu.com'] # Nanti diisi domain asli
+ALLOWED_HOSTS = ['*'] # Untuk testing awal di Docker, nanti ganti ke domain asli
 
 DATABASES = {
     'default': {

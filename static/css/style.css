@@ -155,6 +155,8 @@ img {
   justify-content: center;
   text-align: center;
   overflow: hidden;
+  /* Tambahkan ini agar Hero punya tinggi yang pas di layar */
+  min-height: 80vh;
 }
 
 .slide-bg {
@@ -166,6 +168,8 @@ img {
   background-size: cover;
   background-position: center;
   z-index: 1;
+  /* Tambahkan ini untuk memastikan gambar tidak pecah */
+  background-repeat: no-repeat;
 }
 
 .slide-bg::before {
@@ -431,6 +435,7 @@ img {
 }
 
 @keyframes blob-float {
+
   0%,
   100% {
     transform: translate(0, 0) rotate(0deg);
@@ -623,15 +628,20 @@ img {
 
 /* Pastikan container modal-info tidak kaku lebarnya */
 .modal-info {
-  word-wrap: break-word; /* Memaksa kata panjang pindah baris */
-  overflow-wrap: break-word; /* Standar modern untuk break-word */
-  word-break: break-word; /* Tambahan untuk browser lama */
-  hyphens: auto; /* (Opsional) Menambah tanda strip (-) jika kata dipotong */
+  word-wrap: break-word;
+  /* Memaksa kata panjang pindah baris */
+  overflow-wrap: break-word;
+  /* Standar modern untuk break-word */
+  word-break: break-word;
+  /* Tambahan untuk browser lama */
+  hyphens: auto;
+  /* (Opsional) Menambah tanda strip (-) jika kata dipotong */
 }
 
 /* Khusus untuk Judul (H4) agar tidak bablas ke samping */
 #modalTitle {
-  white-space: normal; /* Memastikan teks tidak dipaksa satu baris */
+  white-space: normal;
+  /* Memastikan teks tidak dipaksa satu baris */
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -639,10 +649,14 @@ img {
 
 /* Khusus untuk Deskripsi (P) agar rapi */
 #modalDescription {
-  white-space: pre-line; /* Menjaga enter/baris baru dari database tetap tampil */
-  max-height: 300px; /* Batasi tinggi maksimal biar nggak kepanjangan kebawah */
-  overflow-y: auto; /* Kalau deskripsi sangat panjang, muncul scrollbar kecil di dalam */
-  padding-right: 5px; /* Kasih ruang buat scrollbar */
+  white-space: pre-line;
+  /* Menjaga enter/baris baru dari database tetap tampil */
+  max-height: 300px;
+  /* Batasi tinggi maksimal biar nggak kepanjangan kebawah */
+  overflow-y: auto;
+  /* Kalau deskripsi sangat panjang, muncul scrollbar kecil di dalam */
+  padding-right: 5px;
+  /* Kasih ruang buat scrollbar */
 }
 
 /* =============================================
@@ -884,7 +898,7 @@ img {
   color: var(--text-light);
 }
 
-.breadcrumb-item + .breadcrumb-item::before {
+.breadcrumb-item+.breadcrumb-item::before {
   content: "›";
   color: var(--text-light);
 }

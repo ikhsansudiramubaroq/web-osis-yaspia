@@ -1,8 +1,6 @@
 {% extends "base.html" %} 
 
 {% block extra_css %}
-<!-- Swiper CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 <!-- Preload LCP Image -->
 {% if hero %}
 <link rel="preload" as="image" href="{{ hero.0.image_hero.url }}" />
@@ -22,11 +20,7 @@
 
       {% for her in hero %}
       <div class="swiper-slide">
-        <div
-          class="slide-bg"
-          style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('{{ her.image_hero.url }}') center/cover no-repeat;"
-        >
-          >
+        <div class="slide-bg" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('{{ her.image_hero.url }}') center/cover no-repeat;">
         </div>
         <div class="slide-content">
           <h1 class="slide-title" data-aos="fade-up">{{ her.title_hero }}</h1>
@@ -307,7 +301,5 @@
 {% include "partials/footer.html" %} 
 {% endblock 'content' %}
 
-{% block extra_js %}
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" defer></script>
-{% endblock extra_js %}
+
+

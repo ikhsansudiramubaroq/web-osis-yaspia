@@ -27,3 +27,5 @@ media/
 
 note.MD
 todo.MD
+
+postgres_data/
