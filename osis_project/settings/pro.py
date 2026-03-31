@@ -1,8 +1,8 @@
 from .base import *
-from decouple import config # Pastikan ini ada kalau pakai .env
+from decouple import config, Csv # Pastikan ini ada kalau pakai .env
 
-DEBUG = False
-ALLOWED_HOSTS = ['*'] # Untuk testing awal di Docker, nanti ganti ke domain asli
+DEBUG = False   
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='127.0.0.1', cast=Csv())
 
 DATABASES = {
     'default': {
@@ -10,7 +10,7 @@ DATABASES = {
         'NAME': config('DB_NAME'),
         'USER' : config('DB_USER'),
         'PASSWORD' : config('DB_PASSWORD'),
-        'HOST' : config('DB_HOST'),
+        'HOST' : '127.0.0.1',
         'PORT' : config('DB_PORT')
     }
 }

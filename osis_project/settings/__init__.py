@@ -5,7 +5,7 @@ from .base import *
 
 from decouple import config 
 
-if config('DEBUG', default=True, cast=bool):
+if config('DEBUG', default=False, cast=bool):
     from .local import *
 else :
     from .pro import *
